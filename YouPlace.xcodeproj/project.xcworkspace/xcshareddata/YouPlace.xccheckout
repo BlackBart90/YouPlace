@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0F91C760-26A4-4C8D-9C99-A0EF4B358A91</string>
+	<key>IDESourceControlProjectName</key>
+	<string>YouPlace</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>59DF1B81-D254-4A27-9000-351A9C8FF412</key>
+		<string>https://github.com/BlackBart90/YouPlace.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>YouPlace.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>59DF1B81-D254-4A27-9000-351A9C8FF412</key>
+		<string>../..</string>
+		<key>F4C3AF83-4B62-42BD-A4E0-9CDD32A68018</key>
+		<string>../../YouPlace</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/BlackBart90/YouPlace.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>59DF1B81-D254-4A27-9000-351A9C8FF412</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>59DF1B81-D254-4A27-9000-351A9C8FF412</string>
+			<key>IDESourceControlWCCName</key>
+			<string>YouPlace</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F4C3AF83-4B62-42BD-A4E0-9CDD32A68018</string>
+			<key>IDESourceControlWCCName</key>
+			<string>YouPlace</string>
+		</dict>
+	</array>
+</dict>
+</plist>
