@@ -12,6 +12,7 @@
 #import "Utils.h"
 #import "MainViewController.h"
 #import "FileUploaderManager.h"
+#import "DataManager.h"
 
 @interface SinglePlaceView () <MKMapViewDelegate,FileUploaderProtocol>
 
@@ -196,7 +197,6 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Qualcosa è andato storto" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
         [alert show];
     }];
-    
 }
 
 -(void)saveNote:(id)sender

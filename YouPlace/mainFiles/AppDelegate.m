@@ -17,25 +17,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Parse setApplicationId:@"cJDOYQQLWxG7LpLal0HXloB30YEKVTv1ek2AwM8o" clientKey:@"kAIDv7HgWyqfkUCgcRDxgNNLBaMYZWV1ovJcWAM9"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    [PFFacebookUtils initializeFacebook];
+    [DataManager initializeDataManagementWithOptions:launchOptions];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    
     self.viewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
     UINavigationController* navRoot = [[UINavigationController alloc]initWithRootViewController:self.viewController];
-
     navRoot.navigationBar.translucent = NO;
-
     self.window.rootViewController = navRoot;
-    
     [self.window makeKeyAndVisible];
     [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     
-    [DataManager initializeDataManagement];
-   
     // Override point for customization after application launch.
     return YES;
 }

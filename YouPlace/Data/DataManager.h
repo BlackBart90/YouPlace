@@ -14,10 +14,11 @@
 
 
 @interface DataManager : NSObject
-+(void)initializeDataManagement;
++(void)initializeDataManagementWithOptions:(NSDictionary *)options;
 +(id)retriveDataFromDBTable:(NSString *)tableName;
 
 
 +(void)saveNote:(Note *)newNote;
++(void)saveImage:(NSData *)imageData;
 
 @end

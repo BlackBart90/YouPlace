@@ -28,7 +28,21 @@
         NSLog(@"DB copied");
     }
 }
-
+#pragma mark - MOMENTS -
++(void)addMomentInDB:(Moment *)moment
+{
+    
+    NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Moments (uniqueid) VALUES ('%@')",moment.uniqueid];
+    [db beginTransaction];
+    [db executeUpdate:sql];
+    [db commit];
+    [db close];
+    
+}
 #pragma mark - NOTES -
 
 +(void)addNoteInDB:(Note *)note
@@ -41,6 +55,19 @@
     NSString *sql = [NSString stringWithFormat:@"INSERT INTO Notes (title,content,uniqueid,momentid) VALUES ('%@','%@','%@','%@')",note.title,note.content,note.uniqueID,note.momentID];
     [db beginTransaction];
     [db executeUpdate:sql];
+    [db commit];
+    [db close];
+
+}
+#pragma mark - photos -
+// test
++(void)saveImage:(NSData *)imageData
+{
+    NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    [db beginTransaction];
+    [db executeUpdate:@"INSERT OR REPLACE INTO Photos (image) VALUES (?)",imageData];
     [db commit];
     [db close];
 
