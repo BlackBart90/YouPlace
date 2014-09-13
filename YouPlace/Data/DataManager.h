@@ -18,7 +18,7 @@
 +(id)retriveDataFromDBTable:(NSString *)tableName;
 
 
-+(void)saveNote:(Note *)newNote;
-+(void)saveImage:(NSData *)imageData;
++(void)saveNote:(Note *)newNote inPlace:(Place *)place completionDBBlock:(void(^)(void))completionDB remoteCompletionBlock:(void(^)(void))remoteCompletion remoteFailureBlock:(void(^)(void))remoteFailure;
++(void)saveImage:(NSData *)imageData inPlace:(Place *)place withData:(NSDictionary *)data completionDBBlock:(void(^)(Moment *finalMom))completionDB remoteCompletionBlock:(void(^)(Moment *finalMom))remoteCompletion remoteFailureBlock:(void(^)(void))remoteFailure;
 
 @end

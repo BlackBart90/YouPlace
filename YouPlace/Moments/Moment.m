@@ -41,17 +41,16 @@
         return self;
 }
 
-//saving new moment
-+(void)saveCurrentMomentInPlace:(Place *)place withData:(NSDictionary *)data withFinal:(void(^)(Moment *moment))finalBlock errorBlock:(void(^)(void))error
+
++(Moment *)newMomentwithPlace:(Place *)place withData:(NSDictionary *)data
 {
-     NSString *name = kDefaultMomentName;
+    NSString *name = kDefaultMomentName;
     if ([data objectForKey:kMomentNameKEY]) {
         name = [data objectForKey:kMomentNameKEY];
     }
-    NSLog(@"cicao");
     NSString *containerName = place.name;
     if ([data objectForKey:kMomentContainerNameKEY]) {
-       containerName  = [data objectForKey:kMomentContainerNameKEY];
+        containerName  = [data objectForKey:kMomentContainerNameKEY];
     }
     
     NSString *noteContent = kDefaultMomentNoteContent;
@@ -60,19 +59,28 @@
         noteContent = [data objectForKey:kMomentNoteContentKEY];
     }
     
+    Moment *newMoment = [[Moment alloc]init];
+    newMoment.place = place;
+    newMoment.name = name;
+    newMoment.uniqueid = [Utils createUUID];
+    newMoment.containerName = containerName;
+    newMoment.info  = @{@"note":noteContent};
+    newMoment.startDate =[NSDate date];
+    newMoment.endDate = [NSDate date];
+    
+    return newMoment;
+}
+//saving new moment
++(void)saveCurrentMomentInPlace:(Place *)place withData:(NSDictionary *)data withFinal:(void(^)(Moment *moment))finalBlock errorBlock:(void(^)(void))error
+{
+
     if([place validatePlace]){
-        Moment *newMoment = [[Moment alloc]init];
-        newMoment.place = place;
-        newMoment.name = name;
-        newMoment.uniqueid = [Utils createUUID];
-        newMoment.containerName = containerName;
-        newMoment.info  = @{@"note":noteContent};
-        newMoment.startDate =[NSDate date];
-        newMoment.endDate = [NSDate date];
         
-        [ParseData saveNewMoment:newMoment inNewPlace:place success:^{
-            NSLog(@"momento %@ salvato",newMoment.uniqueid);
-            finalBlock(newMoment);
+        Moment *ptMoment = [self newMomentwithPlace:place withData:data];
+        
+        [ParseData saveNewMoment:ptMoment inNewPlace:place success:^{
+            NSLog(@"momento %@ salvato",ptMoment.uniqueid);
+            finalBlock(ptMoment);
         } failure:^{
             error();
             NSLog(@"moment non salvato");

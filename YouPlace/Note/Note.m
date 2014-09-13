@@ -13,7 +13,7 @@
 
 -(Note *)validateNote
 {
-    if (!self || !self.content || !self.uniqueID || !self.momentID || !self.title) {
+    if (!self || !self.content || !self.uniqueID || !self.momentID || !self.title || !self.containerName) {
         
         NSAssert(false, @"note is not complete");
         return nil;

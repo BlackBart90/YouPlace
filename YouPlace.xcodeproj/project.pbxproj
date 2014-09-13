@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA39671519C3BC7D003AE04E /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EA39671419C3BC7D003AE04E /* youplace.sqlite */; };
+		EA39671619C3BC7D003AE04E /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EA39671419C3BC7D003AE04E /* youplace.sqlite */; };
 		EA487CD31982D7A4007EBA50 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD21982D7A4007EBA50 /* Foundation.framework */; };
 		EA487CD51982D7A4007EBA50 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD41982D7A4007EBA50 /* CoreGraphics.framework */; };
 		EA487CD71982D7A4007EBA50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD61982D7A4007EBA50 /* UIKit.framework */; };
@@ -28,7 +30,6 @@
 		EAB4A58519BC7BDB0021378D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A53319BC7BDB0021378D /* InfoPlist.strings */; };
 		EAB4A58D19BC7BDB0021378D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A54319BC7BDB0021378D /* Images.xcassets */; };
 		EAB4A5A719BC7BDB0021378D /* webFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A57119BC7BDB0021378D /* webFont.ttf */; };
-		EAB4A5AA19BC7BDB0021378D /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A57619BC7BDB0021378D /* youplace.sqlite */; };
 		EAB4A61619BC83D00021378D /* EmptyContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB4A5AD19BC83D00021378D /* EmptyContainerView.m */; };
 		EAB4A61719BC83D00021378D /* EmptyContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A5AE19BC83D00021378D /* EmptyContainerView.xib */; };
 		EAB4A61819BC83D00021378D /* EmptyPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB4A5B019BC83D00021378D /* EmptyPlaceView.m */; };
@@ -92,6 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA39671419C3BC7D003AE04E /* youplace.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = youplace.sqlite; sourceTree = "<group>"; };
 		EA487CCF1982D7A4007EBA50 /* YouPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA487CD21982D7A4007EBA50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA487CD41982D7A4007EBA50 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,7 +116,6 @@
 		EAB4A53419BC7BDB0021378D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EAB4A54319BC7BDB0021378D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EAB4A57119BC7BDB0021378D /* webFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = webFont.ttf; sourceTree = "<group>"; };
-		EAB4A57619BC7BDB0021378D /* youplace.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = youplace.sqlite; sourceTree = "<group>"; };
 		EAB4A5AC19BC83D00021378D /* EmptyContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyContainerView.h; sourceTree = "<group>"; };
 		EAB4A5AD19BC83D00021378D /* EmptyContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyContainerView.m; sourceTree = "<group>"; };
 		EAB4A5AE19BC83D00021378D /* EmptyContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyContainerView.xib; sourceTree = "<group>"; };
@@ -323,7 +324,7 @@
 				EAB4A53319BC7BDB0021378D /* InfoPlist.strings */,
 				EAB4A54319BC7BDB0021378D /* Images.xcassets */,
 				EAB4A57119BC7BDB0021378D /* webFont.ttf */,
-				EAB4A57619BC7BDB0021378D /* youplace.sqlite */,
+				EA39671419C3BC7D003AE04E /* youplace.sqlite */,
 				EAB4A64719BC84190021378D /* YouPlace-Info.plist */,
 				EAB4A64819BC84190021378D /* YouPlace-Prefix.pch */,
 			);
@@ -648,11 +649,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAB4A5AA19BC7BDB0021378D /* youplace.sqlite in Resources */,
 				EAB4A63519BC83D00021378D /* MainViewController.xib in Resources */,
 				EAB4A64919BC84190021378D /* YouPlace-Info.plist in Resources */,
 				EAB4A63019BC83D00021378D /* LoginViewController.xib in Resources */,
 				EAB4A62619BC83D00021378D /* InfoPlist.strings in Resources */,
+				EA39671519C3BC7D003AE04E /* youplace.sqlite in Resources */,
 				EAB4A61C19BC83D00021378D /* SinglePlaceView.xib in Resources */,
 				EAB4A61719BC83D00021378D /* EmptyContainerView.xib in Resources */,
 				EAB4A58D19BC7BDB0021378D /* Images.xcassets in Resources */,
@@ -669,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA487CFF1982D7A4007EBA50 /* InfoPlist.strings in Resources */,
+				EA39671619C3BC7D003AE04E /* youplace.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

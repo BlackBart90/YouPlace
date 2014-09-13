@@ -30,5 +30,6 @@ static NSString *kDefaultMomentNoteContent = @"defualt_moment_note_content";
 -(Moment *)validateMoment;
 +(void)saveCurrentMomentInPlace:(Place *)place withData:(NSDictionary *)data withFinal:(void(^)(Moment *moment))finalBlock errorBlock:(void(^)(void))error;
 
++(Moment *)newMomentwithPlace:(Place *)place withData:(NSDictionary *)data;
 
 @end

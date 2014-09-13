@@ -15,10 +15,11 @@
 +(void)checkAndCreateDatabase
 {
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
+    
     if (![[NSFileManager defaultManager] fileExistsAtPath:dbPath]) {
     NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"youplace" ofType:@"sqlite"];
-    NSError *error = nil;
         
+    NSError *error = nil;
         if (![[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:dbPath error:&error]) {
             NSLog(@"Error: %@", error);
         }
@@ -47,7 +48,6 @@
 
 +(void)addNoteInDB:(Note *)note
 {
-   
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
@@ -60,14 +60,13 @@
 
 }
 #pragma mark - photos -
-// test
-+(void)saveImage:(NSData *)imageData
++(void)saveImage:(NSData *)imageData withMomentId:(NSString *)momentId andUniqueid:(NSString *)uuid
 {
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
     [db beginTransaction];
-    [db executeUpdate:@"INSERT OR REPLACE INTO Photos (image) VALUES (?)",imageData];
+    [db executeUpdate:@"INSERT OR REPLACE INTO Photos (image,uniqueid,momentid) VALUES (?,?,?)",imageData,uuid,momentId];
     [db commit];
     [db close];
 

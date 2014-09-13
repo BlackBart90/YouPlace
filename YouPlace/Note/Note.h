@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Note : NSObject
+@property (nonatomic,strong) NSString *containerName;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic,strong) NSString *uniqueID;

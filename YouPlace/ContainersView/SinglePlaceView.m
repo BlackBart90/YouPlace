@@ -160,7 +160,6 @@
 }
 -(void)savePhoto:(id)sender
 {
-
     NSLog(@"moment container name : %@",self.ownContainer.placeName);
     [[FileUploaderManager sharedClass] newImageFromController:self.ptMainController andDelegate:self];
 
@@ -172,52 +171,41 @@
                                 @"contName":self.ownContainer.name,
                                 };
     
-    [Moment saveCurrentMomentInPlace:[[self updatePlace] validatePlace] withData:dictData withFinal:^(Moment *moment) {
+    [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace] withData:dictData completionDBBlock:^(Moment *mom){
         
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hai salvato un momento " message:@"attendi" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alert show];
-        [self.ptMainController loadRegionsWithFinalBlock:^{
-            
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Regioni ricaricate " message:@"attendi per l'upload della foto" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }];
+        [self.ptMainController loadContainers];
+
+      
+    } remoteCompletionBlock:^(Moment *mom){
         
-        
-        [ParseData uploadImageWithData:dataFile andMoment:moment success:^{
+        [ParseData uploadImageWithData:dataFile andMoment:mom success:^{
             NSLog(@"photo uploaded");
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Foto caricata " message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
             [alert show];
-            [self.ptMainController loadContainers];
-            
         } error:^{
             NSLog(@"error");
         }];
         
-    } errorBlock:^{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Qualcosa è andato storto" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alert show];
+    } remoteFailureBlock:^{
+        
     }];
 }
 
 -(void)saveNote:(id)sender
 {
+    Note *customNote = [[Note alloc]init];
+    customNote.content = @"testo di prova per vedere se va";
+    customNote.containerName = self.ownContainer.name;
+    customNote.title = @"titolo di prova";
     
-    NSDictionary * dictData = @{kMomentNameKEY:kDefaultMomentName,
-                                kMomentContainerNameKEY:self.ownContainer.name,
-                                kMomentNoteContentKEY:@"testo di prova",
-                                };
-    [Moment saveCurrentMomentInPlace:[[self updatePlace] validatePlace] withData:dictData withFinal:^(Moment *moment) {
-        
-        [self.ptMainController loadRegionsWithFinalBlock:^{
-            [self.ptMainController loadContainers];
+    [DataManager saveNote:customNote inPlace:[[self updatePlace] validatePlace] completionDBBlock:^{
+        NSLog(@"nota + moment salvato in locale");
+    } remoteCompletionBlock:^{
+        NSLog(@"nota + moment salvato in remoto");
+    } remoteFailureBlock:^{
+        NSLog(@"qualcosa è andato storto in remoto");
 
-        }];
-
-    } errorBlock:^{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Qualcosa è andato storto" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alert show];
     }];
-
 }
 
 -(Place *)updatePlace

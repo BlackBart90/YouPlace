@@ -28,10 +28,10 @@ static NSString *kDBpath = @"/Library/Caches/youplace.sqlite";
 +(void)deleteItem:(int)number fromTable:(NSString *)tablename;
 
 +(void)updateObjectToTableDoppieWithNumero:(int)numero andQnt:(int)qnt;
-+(void)saveImage:(NSData *)imageData;
 
 
 
++(void)saveImage:(NSData *)imageData withMomentId:(NSString *)momentId andUniqueid:(NSString *)uuid;
 +(void)addNoteInDB:(Note *)note;
 +(void)addMomentInDB:(Moment *)moment;
 
