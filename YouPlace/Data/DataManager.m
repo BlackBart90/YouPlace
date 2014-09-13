@@ -173,10 +173,16 @@
     imagesBlock([dbManager imagesFromContainer:containerName]);
 }
 
-// PLACES
-
 // NOTES
-
++(void)loadNotes:(void(^)(NSArray *notes))notesBlock fromContainerName:(NSString *)containerName
+{
+    notesBlock([dbManager loadNotesFromContainerName:containerName]);
+}
+// PLACES
++(void)loadPlaces:(void(^)(NSArray *places))placesBlock fromContainerName:(NSString *)containerName
+{
+    
+}
 // CONTACTS
 
 +(id)retriveDataFromDBTable:(NSString *)tableName

@@ -24,5 +24,6 @@
 
 
 +(void)loadFastDBImages:(void(^)(NSArray *images))imagesBlock fromContainerName:(NSString *)containerName;
++(void)loadNotes:(void(^)(NSArray *notes))notesBlock fromContainerName:(NSString *)containerName;
 
 @end

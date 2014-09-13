@@ -64,14 +64,39 @@
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
 
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Notes (title,content,uniqueid,container_name) VALUES ('%@','%@','%@','%@')",note.title,note.content,note.uniqueID,note.containerName];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Notes (title,content,uniqueid,container_name,momentid) VALUES ('%@','%@','%@','%@','%@')",note.title,note.content,note.uniqueID,note.containerName,note.momentID];
     [db beginTransaction];
     [db executeUpdate:sql];
     [db commit];
     [db close];
 
 }
-#pragma mark - photos -
++(NSArray *)loadNotesFromContainerName:(NSString *)containerName
+{
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM Notes WHERE container_name == '%@'",containerName];
+    
+    NSMutableArray *notes = [NSMutableArray new];
+    NSArray *data = [self getArrayFromQuery:query];
+    
+    for (NSDictionary *dataItem in data) {
+        Note *note = [Note new];
+        note.containerName = [dataItem objectForKey:@"container_name"];
+        note.content = [dataItem objectForKey:@"content"];
+        note.title = [dataItem objectForKey:@"title"];
+        note.uniqueID = [dataItem objectForKey:@"uniqueid"];
+        note.momentID = [dataItem objectForKey:@"momentid"];
+        
+        if ([note validateNote]) {
+            [notes addObject:note];
+        }else
+        {
+            NSLog(@"note not loaded correctly");
+        }
+    }
+    return notes;
+}
+
+#pragma mark - PHOTOS -
 +(void)saveImage:(NSData *)imageData withContainerName:(NSString *)containerName andUniqueid:(NSString *)uuid
 {
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
@@ -90,7 +115,6 @@
     NSMutableArray *images = [NSMutableArray new];
     NSArray *data = [self getArrayFromQuery:query];
     for (NSDictionary *obj in data) {
-        
         UIImage *singleImage = [UIImage imageWithData:[obj objectForKey:@"image"]];
         [images addObject:singleImage];
     }

@@ -119,6 +119,12 @@
     [self.mapView addGestureRecognizer:tapMap];
     
 
+    //loadNotes
+    
+    [DataManager loadNotes:^(NSArray *notes) {
+       
+        
+    } fromContainerName:self.ownContainer.name];
     // loadimage
     
     [DataManager loadFastDBImages:^(NSArray *imagesArray) {
