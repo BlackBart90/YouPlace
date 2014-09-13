@@ -22,6 +22,7 @@
     // DB
     [dbManager checkAndCreateDatabase];
     
+    [self sincMoments];
 }
 
 
@@ -50,7 +51,29 @@
         NSLog(@"moment non salvato");
     }];
 }
-
++(void)compareDBMomentsIDS:(NSArray *)dbids withParseOnes:(NSArray *)parseMoments
+{
+    for (Moment *singleMoment in parseMoments) {
+        if (![dbids containsObject:singleMoment.uniqueid]) {
+            [dbManager addMomentInDB:singleMoment];
+        }
+    }
+    /*
+     /////to test this function..>>
+     for (NSString *singleId in dbids )
+     {
+     BOOL check = NO;
+     for (Moment *singleMoment in parseMoments) {
+     if ([singleMoment.uniqueid isEqualToString:singleId]) {
+     check = YES;
+     }
+     }
+     
+     if (!check) {
+     //remove moment from DB..
+     }
+     }*/
+}
 #pragma mark - public methods -
 +(void)saveImage:(NSData *)imageData inPlace:(Place *)place withData:(NSDictionary *)data
                         completionDBBlock:(void(^)(Moment *finalMom))completionDB
@@ -116,9 +139,45 @@
     NSAssert([contact validateContact], @"contact is not valid");
     // contacts are saved ONLY in DB
     [dbManager saveContact:contact];
-    
+    completionDB();
 }
 
+#pragma mark - data retriving - 
+
+//MOMENTS
++(void)sincMoments
+{
+    //DB
+    NSArray *momentDB = (NSArray *)[dbManager elementsFromTableName:@"Moments"];
+    __block NSMutableArray *dbIds = [[NSMutableArray alloc]init];
+     for (NSDictionary *item in momentDB) {
+        [dbIds addObject:[item objectForKey:@"uniqueid"]];
+    }
+    __block NSMutableArray *parseIds = [NSMutableArray new];
+    // PARSE
+    [ParseData getMomentsFromServerSuccess:^(NSArray *moments) {
+        for (Moment*momentParse in moments) {
+            [parseIds addObject:momentParse];
+        }
+        //////compare moments ids//////
+        [self compareDBMomentsIDS:dbIds withParseOnes:parseIds];
+        NSLog(@"db now are sincronized");
+        ///////////////////////////
+    } failure:^{
+    
+    }];
+}
+// IMAGES
++(void)loadFastDBImages:(void(^)(NSArray *images))imagesBlock fromContainerName:(NSString *)containerName
+{
+    imagesBlock([dbManager imagesFromContainer:containerName]);
+}
+
+// PLACES
+
+// NOTES
+
+// CONTACTS
 
 +(id)retriveDataFromDBTable:(NSString *)tableName
 {

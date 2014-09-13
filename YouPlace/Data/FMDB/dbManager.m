@@ -83,6 +83,21 @@
     [db close];
 
 }
++(NSArray *)imagesFromContainer:(NSString *)containerName
+{
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM Photos WHERE container_name == '%@'",containerName];
+    
+    NSMutableArray *images = [NSMutableArray new];
+    NSArray *data = [self getArrayFromQuery:query];
+    for (NSDictionary *obj in data) {
+        
+        UIImage *singleImage = [UIImage imageWithData:[obj objectForKey:@"image"]];
+        [images addObject:singleImage];
+    }
+    
+    return images;
+}
+#pragma mark - contacts -
 +(void)saveContact:(Contact *)contact
 {
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
@@ -97,7 +112,6 @@
     
 }
 #pragma mark - other -
-
 
 +(NSMutableArray *)elementsFromTableName:(NSString *)table;
 {

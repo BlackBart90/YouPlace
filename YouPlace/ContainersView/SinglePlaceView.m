@@ -120,6 +120,22 @@
     
 
     // loadimage
+    
+    [DataManager loadFastDBImages:^(NSArray *imagesArray) {
+        
+        for (int i = 0; i < imagesArray.count; i++) {
+            if (i<self.images.count) {
+                if ([self.imageViewTest isKindOfClass:[PFImageView class]]) {
+                    PFImageView *imageViewpt = (PFImageView *)[self.images objectAtIndex:i];
+                    imageViewpt.contentMode = UIViewContentModeScaleAspectFit;
+                    imageViewpt.image = [imagesArray objectAtIndex:i];
+                }
+            }
+        }
+        
+    } fromContainerName:self.ownContainer.name];
+    
+    /*
     [ParseData loadImageWithContainerName:self.ownContainer.name success:^(NSArray *arrayFile) {
         for (int i = 0; i < arrayFile.count; i++) {
             if (i<self.images.count) {
@@ -133,7 +149,7 @@
         }
     } error:^{
         
-    }];
+    }];*/
     
 }
 -(void)saveMoment:(id)sender
