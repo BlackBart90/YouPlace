@@ -48,7 +48,10 @@
 }
 -(void)userDidLoggedIn
 {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.delegate userDidLoggedIn:self];
+    
+    }];
 }
 - (void)didReceiveMemoryWarning
 {

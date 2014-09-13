@@ -11,6 +11,7 @@
 #import "FMResultSet.h"
 #import "Note.h"
 #import "Moment.h"
+#import "Contact.h"
 
 static NSString *kDBpath = @"/Library/Caches/youplace.sqlite";
 
@@ -31,8 +32,10 @@ static NSString *kDBpath = @"/Library/Caches/youplace.sqlite";
 
 
 
-+(void)saveImage:(NSData *)imageData withMomentId:(NSString *)momentId andUniqueid:(NSString *)uuid;
++(void)saveImage:(NSData *)imageData withContainerName:(NSString *)containerName andUniqueid:(NSString *)uuid;
 +(void)addNoteInDB:(Note *)note;
 +(void)addMomentInDB:(Moment *)moment;
++(void)addPlaceInDB:(Place *)place;
++(void)saveContact:(Contact *)contact;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "DataManager.h"
 #import "Utils.h"
+#import "Contact.h"
 
 @implementation DataManager
 
@@ -34,6 +35,7 @@
     NSAssert([place validatePlace], @"place not valid");
     
     [dbManager addMomentInDB:moment];
+    [dbManager addPlaceInDB:place];
     successDBBlock(moment);
     
     // failure block for db manager not presented yet..
@@ -67,7 +69,7 @@
         remoteCompletion(mom);
     } successDB:^(Moment *finalDBMoment) {
         
-        [dbManager saveImage:imageData withMomentId:finalDBMoment.uniqueid andUniqueid:[Utils createUUID]];
+        [dbManager saveImage:imageData withContainerName:finalDBMoment.containerName andUniqueid:[Utils createUUID]];
         completionDB(finalDBMoment);
 
     } failureParse:^{
@@ -106,12 +108,21 @@
         remoteFailure();
     } failureDB:^{}];
 }
++(void)saveContact:(Contact *)contact inPlace:(Place *)place
+                    completionDBBlock:(void(^)(void))completionDB
+                    remoteCompletionBlock:(void(^)(void))remoteCompletion
+                    remoteFailureBlock:(void(^)(void))remoteFailure
+{
+    NSAssert([contact validateContact], @"contact is not valid");
+    // contacts are saved ONLY in DB
+    [dbManager saveContact:contact];
+    
+}
+
+
 +(id)retriveDataFromDBTable:(NSString *)tableName
 {
   return [dbManager elementsFromTableName:tableName];
 }
-
-
-
 
 @end

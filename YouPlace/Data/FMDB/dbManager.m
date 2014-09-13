@@ -37,12 +37,24 @@
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Moments (uniqueid) VALUES ('%@')",moment.uniqueid];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Moments (uniqueid,container_name,place_id) VALUES ('%@','%@','%@')",moment.uniqueid,moment.containerName,moment.place.uniqueid];
     [db beginTransaction];
     [db executeUpdate:sql];
     [db commit];
     [db close];
     
+}
++(void)addPlaceInDB:(Place *)place
+{
+    NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Places (uniqueid,lat,lng,name,region_radius) VALUES ('%@','%@','%@','%@','%i')",place.uniqueid,place.lat,place.lng,place.name,place.regionRadius];
+    [db beginTransaction];
+    [db executeUpdate:sql];
+    [db commit];
+    [db close];
 }
 #pragma mark - NOTES -
 
@@ -52,7 +64,7 @@
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
 
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Notes (title,content,uniqueid,momentid) VALUES ('%@','%@','%@','%@')",note.title,note.content,note.uniqueID,note.momentID];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Notes (title,content,uniqueid,container_name) VALUES ('%@','%@','%@','%@')",note.title,note.content,note.uniqueID,note.containerName];
     [db beginTransaction];
     [db executeUpdate:sql];
     [db commit];
@@ -60,18 +72,30 @@
 
 }
 #pragma mark - photos -
-+(void)saveImage:(NSData *)imageData withMomentId:(NSString *)momentId andUniqueid:(NSString *)uuid
++(void)saveImage:(NSData *)imageData withContainerName:(NSString *)containerName andUniqueid:(NSString *)uuid
 {
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
     [db beginTransaction];
-    [db executeUpdate:@"INSERT OR REPLACE INTO Photos (image,uniqueid,momentid) VALUES (?,?,?)",imageData,uuid,momentId];
+    [db executeUpdate:@"INSERT OR REPLACE INTO Photos (image,uniqueid,container_name) VALUES (?,?,?)",imageData,uuid,containerName];
     [db commit];
     [db close];
 
 }
-
++(void)saveContact:(Contact *)contact
+{
+    NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Contacts (uniqueid,name,surname,tel,link_fb,link_tw,address,email,note,container_name) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",contact.uniqueid,contact.name,contact.surname,contact.tel,contact.link_fb,contact.ling_tw,contact.address,contact.email,contact.note,contact.containerName];
+    [db beginTransaction];
+    [db executeUpdate:sql];
+    [db commit];
+    [db close];
+    
+}
 #pragma mark - other -
 
 

@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "AwesomeButton.h"
+
+@class LoginViewController;
+
+@protocol LoginDelegate <NSObject>
+
+-(void)userDidLoggedIn:(LoginViewController *)loginController;
+
+@end
+
 @interface LoginViewController : UIViewController
 
 @property (nonatomic,weak)IBOutlet AwesomeButton *fbButton;
-
+@property (nonatomic,weak) id <LoginDelegate> delegate;
 
 -(IBAction)loginFacebook:(id)sender;
 

@@ -24,7 +24,7 @@
 #import "MyRegionsManager.h"
 #import "DetailContainerViewController.h"
 
-@interface MainViewController ()<CLLocationManagerDelegate,MKMapViewDelegate,UITextFieldDelegate,PlaceScrollerProtocol,UIImagePickerControllerDelegate>
+@interface MainViewController ()<CLLocationManagerDelegate,MKMapViewDelegate,UITextFieldDelegate,PlaceScrollerProtocol,UIImagePickerControllerDelegate,LoginDelegate>
 {
      BOOL currentPlaceChanged;
     Place *tmpPlace;
@@ -96,7 +96,7 @@
     
     if (![[AccountParse sharedClass] userLoggedIn]) {
         LoginViewController *loginController = [[LoginViewController alloc]init];
-        
+        loginController.delegate = self;
         [self presentViewController:loginController animated:YES completion:^{
         
             NSLog(@"present login");
@@ -109,6 +109,14 @@
             [self loadContainers];
         }];
     }
+}
+-(void)userDidLoggedIn:(LoginViewController *)loginController
+{
+    [self startLocalization];
+    [self loadRegionsWithFinalBlock:^{
+        
+        [self loadContainers];
+    }];
 }
 -(void)didenterInbackground
 {

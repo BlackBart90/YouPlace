@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA39671519C3BC7D003AE04E /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EA39671419C3BC7D003AE04E /* youplace.sqlite */; };
-		EA39671619C3BC7D003AE04E /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EA39671419C3BC7D003AE04E /* youplace.sqlite */; };
 		EA487CD31982D7A4007EBA50 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD21982D7A4007EBA50 /* Foundation.framework */; };
 		EA487CD51982D7A4007EBA50 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD41982D7A4007EBA50 /* CoreGraphics.framework */; };
 		EA487CD71982D7A4007EBA50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD61982D7A4007EBA50 /* UIKit.framework */; };
@@ -80,6 +78,9 @@
 		EAB4A64919BC84190021378D /* YouPlace-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A64719BC84190021378D /* YouPlace-Info.plist */; };
 		EAB4A64D19BC904A0021378D /* WildcardGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB4A64C19BC904A0021378D /* WildcardGestureRecognizer.m */; };
 		EAE07976198EC8FB00E462D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE07975198EC8FB00E462D3 /* MapKit.framework */; };
+		EAF05E8819C45DB20005EF79 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF05E8719C45DB20005EF79 /* Contact.m */; };
+		EAF05E9019C464AE0005EF79 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAF05E8F19C464AE0005EF79 /* youplace.sqlite */; };
+		EAF05E9119C464AE0005EF79 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAF05E8F19C464AE0005EF79 /* youplace.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +94,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA39671419C3BC7D003AE04E /* youplace.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = youplace.sqlite; sourceTree = "<group>"; };
 		EA487CCF1982D7A4007EBA50 /* YouPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA487CD21982D7A4007EBA50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA487CD41982D7A4007EBA50 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -206,6 +206,9 @@
 		EAB4A64B19BC904A0021378D /* WildcardGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WildcardGestureRecognizer.h; sourceTree = "<group>"; };
 		EAB4A64C19BC904A0021378D /* WildcardGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WildcardGestureRecognizer.m; sourceTree = "<group>"; };
 		EAE07975198EC8FB00E462D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		EAF05E8619C45DB20005EF79 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		EAF05E8719C45DB20005EF79 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		EAF05E8F19C464AE0005EF79 /* youplace.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = youplace.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +319,7 @@
 				EAB4A5E119BC83D00021378D /* LoginViewController */,
 				EAB4A5EF19BC83D00021378D /* MapViewController */,
 				EAB4A5F319BC83D00021378D /* Moments */,
+				EAF05E8519C45D960005EF79 /* Contacts */,
 				EAB4A5FE19BC83D00021378D /* Note */,
 				EAB4A60119BC83D00021378D /* Notifications */,
 				EAB4A60419BC83D00021378D /* Utils */,
@@ -324,7 +328,7 @@
 				EAB4A53319BC7BDB0021378D /* InfoPlist.strings */,
 				EAB4A54319BC7BDB0021378D /* Images.xcassets */,
 				EAB4A57119BC7BDB0021378D /* webFont.ttf */,
-				EA39671419C3BC7D003AE04E /* youplace.sqlite */,
+				EAF05E8F19C464AE0005EF79 /* youplace.sqlite */,
 				EAB4A64719BC84190021378D /* YouPlace-Info.plist */,
 				EAB4A64819BC84190021378D /* YouPlace-Prefix.pch */,
 			);
@@ -570,6 +574,15 @@
 			path = YouPlace/WildCard;
 			sourceTree = SOURCE_ROOT;
 		};
+		EAF05E8519C45D960005EF79 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				EAF05E8619C45DB20005EF79 /* Contact.h */,
+				EAF05E8719C45DB20005EF79 /* Contact.m */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -653,7 +666,7 @@
 				EAB4A64919BC84190021378D /* YouPlace-Info.plist in Resources */,
 				EAB4A63019BC83D00021378D /* LoginViewController.xib in Resources */,
 				EAB4A62619BC83D00021378D /* InfoPlist.strings in Resources */,
-				EA39671519C3BC7D003AE04E /* youplace.sqlite in Resources */,
+				EAF05E9019C464AE0005EF79 /* youplace.sqlite in Resources */,
 				EAB4A61C19BC83D00021378D /* SinglePlaceView.xib in Resources */,
 				EAB4A61719BC83D00021378D /* EmptyContainerView.xib in Resources */,
 				EAB4A58D19BC7BDB0021378D /* Images.xcassets in Resources */,
@@ -670,7 +683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA487CFF1982D7A4007EBA50 /* InfoPlist.strings in Resources */,
-				EA39671619C3BC7D003AE04E /* youplace.sqlite in Resources */,
+				EAF05E9119C464AE0005EF79 /* youplace.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +726,7 @@
 				EAB4A62419BC83D00021378D /* ParseData.m in Sources */,
 				EAB4A61B19BC83D00021378D /* SinglePlaceView.m in Sources */,
 				EAB4A62519BC83D00021378D /* DetailContainerViewController.m in Sources */,
+				EAF05E8819C45DB20005EF79 /* Contact.m in Sources */,
 				EAB4A62E19BC83D00021378D /* Place.m in Sources */,
 				EAB4A61F19BC83D00021378D /* dbManager.m in Sources */,
 				EAB4A63E19BC83D00021378D /* LocalNotificationManager.m in Sources */,

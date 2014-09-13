@@ -63,14 +63,6 @@
     self.placeId = self.ownContainer.mainPlaceId;
     self.placeName.text = self.ownContainer.placeName;
     self.currentPlace = self.ownContainer.currentPlace;
-    
-    
-//    
-//    if (self.currentPlace) {
-//        currentView = placeView;
-//    }
-//    
-    
     self.coordinates = self.ownContainer.coordinate;
         self.n_moments.text = [NSString stringWithFormat:@"%i",self.ownContainer.numberOfMoments];
     }
@@ -128,7 +120,6 @@
     
 
     // loadimage
-    
     [ParseData loadImageWithContainerName:self.ownContainer.name success:^(NSArray *arrayFile) {
         for (int i = 0; i < arrayFile.count; i++) {
             if (i<self.images.count) {
@@ -199,9 +190,9 @@
     customNote.title = @"titolo di prova";
     
     [DataManager saveNote:customNote inPlace:[[self updatePlace] validatePlace] completionDBBlock:^{
-        NSLog(@"nota + moment salvato in locale");
+        NSLog(@"nota + momento salvato in locale");
     } remoteCompletionBlock:^{
-        NSLog(@"nota + moment salvato in remoto");
+        NSLog(@"nota + momento salvato in remoto");
     } remoteFailureBlock:^{
         NSLog(@"qualcosa è andato storto in remoto");
 

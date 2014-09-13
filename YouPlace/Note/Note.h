@@ -15,6 +15,7 @@
 @property (nonatomic,strong) NSString *uniqueID;
 @property (nonatomic,strong) NSString *momentID;
 
+
 -(Note *)validateNote;
 
 @end
