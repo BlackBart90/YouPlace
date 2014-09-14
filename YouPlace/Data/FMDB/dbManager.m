@@ -10,6 +10,7 @@
 #import "dbManager.h"
 #import <sqlite3.h>
 
+
 @implementation dbManager
 
 +(void)checkAndCreateDatabase
@@ -37,6 +38,20 @@
     [db open];
     
     NSString *sql = [NSString stringWithFormat:@"INSERT INTO Moments (uniqueid,container_name,place_id,name,startDate,endDate) VALUES ('%@','%@','%@','%@','%@','%@')",moment.uniqueid,moment.containerName,moment.place.uniqueid,moment.name,moment.startDate,moment.endDate];
+    [db beginTransaction];
+    [db executeUpdate:sql];
+    [db commit];
+    [db close];
+    
+}
+
++(void)updateMoment:(Moment *)newMoment
+{
+    NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    
+    NSString *sql = [NSString stringWithFormat:@"UPDATE Moments SET container_name = '%@',place_id = '%@',name = '%@',startDate = '%@',endDate = '%@' WHERE uniqueid = '%@'",newMoment.containerName,newMoment.place.uniqueid,newMoment.name,newMoment.startDate,newMoment.endDate,newMoment.uniqueid];
     [db beginTransaction];
     [db executeUpdate:sql];
     [db commit];
@@ -109,16 +124,38 @@
 }
 +(NSArray *)imagesFromContainer:(NSString *)containerName
 {
-    NSString *query = [NSString stringWithFormat:@"SELECT * FROM Photos WHERE container_name == '%@'",containerName];
     
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM Photos"];
+    if (containerName) {
+        query  = [NSString stringWithFormat:@"SELECT * FROM Photos WHERE container_name == '%@'",containerName];
+    }
     NSMutableArray *images = [NSMutableArray new];
     NSArray *data = [self getArrayFromQuery:query];
     for (NSDictionary *obj in data) {
-        UIImage *singleImage = [UIImage imageWithData:[obj objectForKey:@"image"]];
+        YPImage*singleImage = [YPImage new];
+        singleImage.imageData = [UIImage imageWithData:[obj objectForKey:@"image"]];
+        singleImage.containerName = [obj objectForKey:@"container_name"];
+        singleImage.uniqueid = [obj objectForKey:@"uniqueid"];
         [images addObject:singleImage];
     }
     
     return images;
+}
++(void)updateImage:(YPImage *)newYPImage
+{
+    
+    NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
+    NSData *dataImage = [NSData dataWithData:UIImagePNGRepresentation(newYPImage.imageData)];
+
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    [db beginTransaction];
+    
+    
+    [db executeUpdate:@"UPDATE Photos SET image = ?,container_name = '%@' WHERE uniqueid = '%@'",dataImage,newYPImage.containerName,newYPImage.uniqueid];
+    [db commit];
+    [db close];
+    
 }
 #pragma mark - CONTACTS -
 +(void)saveContact:(Contact *)contact

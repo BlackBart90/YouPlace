@@ -17,7 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [DataManager initializeDataManagementWithOptions:launchOptions];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
@@ -25,9 +24,12 @@
     navRoot.navigationBar.translucent = NO;
     self.window.rootViewController = navRoot;
     [self.window makeKeyAndVisible];
-    
-    [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if ([self.viewController isKindOfClass:[MainViewController class]]) {
+        MainViewController *ptController = (MainViewController *)self.viewController;
+        [DataManager initializeDataManagementWithOptions:launchOptions inMainController:ptController];
+    }
 
+    [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     // Override point for customization after application launch.
     return YES;
 }

@@ -10,6 +10,7 @@
 #import "Utils.h"
 #import "Place.h"
 #import "MomentContainerFactory.h"
+#import "YPImage.h"
 
 @implementation ParseData
 
@@ -574,7 +575,7 @@
 }
 
 #pragma mark - photos -
-+(void)uploadImageWithData:(NSData *)imageData andMoment:(Moment *)moment success:(void(^)(void))successBlock error:(void(^)(void))errorBlock;
++(void)uploadImageWithData:(NSData *)imageData imageUUID:(NSString *)imageUUID andMoment:(Moment *)moment success:(void(^)(void))successBlock error:(void(^)(void))errorBlock;
 {
     if (moment.uniqueid.length) {
 
@@ -593,6 +594,7 @@
             [userPhoto setObject:moment.uniqueid forKey:@"momentId"];
             [userPhoto setObject:moment.place.uniqueid forKey:@"placeId"];
             [userPhoto setObject:moment.containerName forKey:@"containerName"];
+            [userPhoto setObject:imageUUID forKey:@"uniqueid"];
             // Set the access control list to current user for security purposes
             userPhoto.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
             [userPhoto.ACL setReadAccess:YES forUser:[PFUser currentUser]];
@@ -680,19 +682,27 @@
 {
     PFUser *currentUser = [PFUser currentUser];
     
-    if (currentUser && containerName) {
+    if (currentUser) {
         NSMutableArray *mutArrayFiles = [[NSMutableArray alloc]init];
         PFQuery *query = [PFQuery queryWithClassName:@"UserPhoto"];
         [query whereKey:@"user" equalTo:[PFUser currentUser]];
-        [query whereKey:@"containerName" containsString:containerName];
-        
+        if (containerName) {
+            [query whereKey:@"containerName" containsString:containerName];
+
+        }
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             
             if (objects.count > 0){
                 
                 for (PFObject *obj in objects) {
-                    PFFile *fileDataImage = (PFFile *)[obj objectForKey:@"imageFile"];
-                    [mutArrayFiles addObject:fileDataImage];
+                    YPImage *singleDataImage = [YPImage new];
+                    singleDataImage.containerName = [obj objectForKey:@"containerName"];
+                    singleDataImage.fileData = (PFFile *)[obj objectForKey:@"imageFile"];
+                    singleDataImage.momentid = [obj objectForKey:@"momentId"];
+                    singleDataImage.placeid = [obj objectForKey:@"placeId"];
+                    singleDataImage.uniqueid = [obj objectForKey:@"uniqueid"];
+                    
+                    [mutArrayFiles addObject:singleDataImage];
                     
                 }
                 success((NSArray *)mutArrayFiles);
@@ -701,4 +711,5 @@
         
     }
 }
+
 @end

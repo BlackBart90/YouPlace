@@ -77,10 +77,12 @@
 		EAB4A64619BC83D00021378D /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB4A61519BC83D00021378D /* Utils.m */; };
 		EAB4A64919BC84190021378D /* YouPlace-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A64719BC84190021378D /* YouPlace-Info.plist */; };
 		EAB4A64D19BC904A0021378D /* WildcardGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB4A64C19BC904A0021378D /* WildcardGestureRecognizer.m */; };
+		EAD45FBE19C631EA008B5834 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAD45FBD19C631EA008B5834 /* youplace.sqlite */; };
+		EAD45FBF19C631EA008B5834 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAD45FBD19C631EA008B5834 /* youplace.sqlite */; };
+		EAD45FC719C6394D008B5834 /* YPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD45FC619C6394D008B5834 /* YPImage.m */; };
+		EAD45FC819C6394D008B5834 /* YPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD45FC619C6394D008B5834 /* YPImage.m */; };
 		EAE07976198EC8FB00E462D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE07975198EC8FB00E462D3 /* MapKit.framework */; };
 		EAF05E8819C45DB20005EF79 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF05E8719C45DB20005EF79 /* Contact.m */; };
-		EAF8AC1119C516C100966FF0 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAF8AC1019C516C100966FF0 /* youplace.sqlite */; };
-		EAF8AC1219C516C100966FF0 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAF8AC1019C516C100966FF0 /* youplace.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,10 +207,12 @@
 		EAB4A64819BC84190021378D /* YouPlace-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "YouPlace-Prefix.pch"; path = "YouPlace/YouPlace-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		EAB4A64B19BC904A0021378D /* WildcardGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WildcardGestureRecognizer.h; sourceTree = "<group>"; };
 		EAB4A64C19BC904A0021378D /* WildcardGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WildcardGestureRecognizer.m; sourceTree = "<group>"; };
+		EAD45FBD19C631EA008B5834 /* youplace.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = youplace.sqlite; path = YouPlace/youplace.sqlite; sourceTree = SOURCE_ROOT; };
+		EAD45FC519C6394D008B5834 /* YPImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPImage.h; sourceTree = "<group>"; };
+		EAD45FC619C6394D008B5834 /* YPImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPImage.m; sourceTree = "<group>"; };
 		EAE07975198EC8FB00E462D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		EAF05E8619C45DB20005EF79 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		EAF05E8719C45DB20005EF79 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
-		EAF8AC1019C516C100966FF0 /* youplace.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = youplace.sqlite; path = YouPlace/youplace.sqlite; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,13 +326,14 @@
 				EAF05E8519C45D960005EF79 /* Contacts */,
 				EAB4A5FE19BC83D00021378D /* Note */,
 				EAB4A60119BC83D00021378D /* Notifications */,
+				EAD45FC419C6394D008B5834 /* YPImage */,
 				EAB4A60419BC83D00021378D /* Utils */,
 				EAB4A64A19BC904A0021378D /* WildCard */,
 				EAB4A5CD19BC83D00021378D /* en.lproj */,
 				EAB4A53319BC7BDB0021378D /* InfoPlist.strings */,
 				EAB4A54319BC7BDB0021378D /* Images.xcassets */,
-				EAF8AC1019C516C100966FF0 /* youplace.sqlite */,
 				EAB4A57119BC7BDB0021378D /* webFont.ttf */,
+				EAD45FBD19C631EA008B5834 /* youplace.sqlite */,
 				EAB4A64719BC84190021378D /* YouPlace-Info.plist */,
 				EAB4A64819BC84190021378D /* YouPlace-Prefix.pch */,
 			);
@@ -574,6 +579,16 @@
 			path = YouPlace/WildCard;
 			sourceTree = SOURCE_ROOT;
 		};
+		EAD45FC419C6394D008B5834 /* YPImage */ = {
+			isa = PBXGroup;
+			children = (
+				EAD45FC519C6394D008B5834 /* YPImage.h */,
+				EAD45FC619C6394D008B5834 /* YPImage.m */,
+			);
+			name = YPImage;
+			path = YouPlace/YPImage;
+			sourceTree = SOURCE_ROOT;
+		};
 		EAF05E8519C45D960005EF79 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,7 +681,7 @@
 				EAB4A64919BC84190021378D /* YouPlace-Info.plist in Resources */,
 				EAB4A63019BC83D00021378D /* LoginViewController.xib in Resources */,
 				EAB4A62619BC83D00021378D /* InfoPlist.strings in Resources */,
-				EAF8AC1119C516C100966FF0 /* youplace.sqlite in Resources */,
+				EAD45FBE19C631EA008B5834 /* youplace.sqlite in Resources */,
 				EAB4A61C19BC83D00021378D /* SinglePlaceView.xib in Resources */,
 				EAB4A61719BC83D00021378D /* EmptyContainerView.xib in Resources */,
 				EAB4A58D19BC7BDB0021378D /* Images.xcassets in Resources */,
@@ -683,7 +698,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA487CFF1982D7A4007EBA50 /* InfoPlist.strings in Resources */,
-				EAF8AC1219C516C100966FF0 /* youplace.sqlite in Resources */,
+				EAD45FBF19C631EA008B5834 /* youplace.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +729,7 @@
 				EAB4A62319BC83D00021378D /* AccountParse.m in Sources */,
 				EAB4A62D19BC83D00021378D /* MyRegionsManager.m in Sources */,
 				EAB4A61819BC83D00021378D /* EmptyPlaceView.m in Sources */,
+				EAD45FC719C6394D008B5834 /* YPImage.m in Sources */,
 				EAB4A64019BC83D00021378D /* NSData+Base64.m in Sources */,
 				EAB4A62219BC83D00021378D /* FMResultSet.m in Sources */,
 				EAB4A63D19BC83D00021378D /* Note.m in Sources */,
@@ -742,6 +758,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD45FC819C6394D008B5834 /* YPImage.m in Sources */,
 				EA487D011982D7A4007EBA50 /* FollowMeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,7 +30,7 @@
 }
 -(Moment *)validateMoment
 {
-    if (!self || !self.name || !self.uniqueid || !self.place || !self.startDate || !self.endDate || !self.info || !self.place.uniqueid) {
+    if (!self || !self.name || !self.uniqueid || !self.place || !self.startDate || !self.endDate || !self.info || !self.place.uniqueid || !self.containerName) {
         
         NSAssert(false, @"moment is not complete");
         return nil;
@@ -38,7 +38,69 @@
     else
         return self;
 }
++(Moment *)sincronizeDBMoment:(Moment *)db_moment withParseMoment:(Moment *)parse_moment
+{
+    Moment *finalMoment = [Moment new];
+    
+    NSAssert(parse_moment.uniqueid, @"parse moment has not uniqueid");
+    
+    
+    //UNIQUEID
+    finalMoment.uniqueid = parse_moment.uniqueid;
+    
+    //PLACE
+    if (parse_moment.place != nil) {
+        finalMoment.place = parse_moment.place;
+    }else
+    {
+        finalMoment.place = db_moment.place;
+    }
+    
+    //START DATE
+    if (parse_moment.startDate != nil) {
+        finalMoment.startDate = parse_moment.startDate;
+    }else
+    {
+        finalMoment.startDate = db_moment.startDate;
+    }
+    
+    //END DATE
+    if (parse_moment.endDate != nil) {
+        finalMoment.endDate = parse_moment.endDate;
+    }else
+    {
+        finalMoment.endDate = db_moment.endDate;
+    }
+    
+    // INFO
+    if (parse_moment.info != nil) {
+        finalMoment.info = parse_moment.info;
+    }else
+    {
+        finalMoment.info = db_moment.info;
+    }
 
+    //NAME
+    if (parse_moment.name != nil) {
+        finalMoment.name = parse_moment.name;
+    }else
+    {
+        finalMoment.name = db_moment.name;
+    }
+    
+    //CONTAINER NAME
+    if (parse_moment.containerName != nil) {
+        finalMoment.containerName = parse_moment.containerName;
+    }else
+    {
+        finalMoment.containerName = db_moment.containerName;
+    }
+    
+    finalMoment = [finalMoment validateMoment];
+    
+    
+    return finalMoment;
+}
 
 +(Moment *)newMomentwithPlace:(Place *)place withData:(NSDictionary *)data
 {

@@ -31,7 +31,7 @@
 +(void)getPlaceFromId:(NSString *)uniqueid success:(void(^)(Place *place))successBlock failure:(void(^)(void))failureBlock;
 
 
-+(void)uploadImageWithData:(NSData *)imageData andMoment:(Moment *)moment success:(void(^)(void))successBlock error:(void(^)(void))errorBlock;
++(void)uploadImageWithData:(NSData *)imageData imageUUID:(NSString *)imageUUID andMoment:(Moment *)moment success:(void(^)(void))successBlock error:(void(^)(void))errorBlock;
 
 
 +(void)loadImageWithPlaceId:(NSString *)placeId success:(void(^)(NSArray *arrayFile))success error:(void(^)(void))errorBlock;

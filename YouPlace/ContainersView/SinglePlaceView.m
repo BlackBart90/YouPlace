@@ -129,12 +129,18 @@
     
     [DataManager loadFastDBImages:^(NSArray *imagesArray) {
         
-        for (int i = 0; i < imagesArray.count; i++) {
+        NSMutableArray *arrImages = [NSMutableArray new];
+        for (YPImage *sImage  in imagesArray) {
+            [arrImages addObject:sImage.imageData];
+            NSLog(@"container image : %@",sImage.containerName);
+        }
+        
+        for (int i = 0; i < arrImages.count; i++) {
             if (i<self.images.count) {
                 if ([self.imageViewTest isKindOfClass:[PFImageView class]]) {
                     PFImageView *imageViewpt = (PFImageView *)[self.images objectAtIndex:i];
                     imageViewpt.contentMode = UIViewContentModeScaleAspectFit;
-                    imageViewpt.image = [imagesArray objectAtIndex:i];
+                    imageViewpt.image = [arrImages objectAtIndex:i];
                 }
             }
         }
@@ -184,7 +190,8 @@
                                 @"contName":self.ownContainer.name,
                                 };
     
-    [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace] withData:dictData completionDBBlock:^(Moment *mom){
+    NSString *imageUUID = [Utils createUUID];
+    [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace]  withData:dictData imageUUID:imageUUID completionDBBlock:^(Moment *mom){
         
         [self.ptMainController loadRegionsWithFinalBlock:^{
             [self.ptMainController loadContainers];
@@ -192,7 +199,7 @@
         }];
     } remoteCompletionBlock:^(Moment *mom){
         
-        [ParseData uploadImageWithData:dataFile andMoment:mom success:^{
+        [ParseData uploadImageWithData:dataFile imageUUID:imageUUID andMoment:mom success:^{
             NSLog(@"photo uploaded");
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Foto caricata " message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
             [alert show];

@@ -12,15 +12,22 @@
 
 #import "Note.h"
 
+@class MainViewController;
 
 @interface DataManager : NSObject
-+(void)initializeDataManagementWithOptions:(NSDictionary *)options;
++(void)initializeDataManagementWithOptions:(NSDictionary *)options inMainController:(MainViewController *)mainController;
 +(id)retriveDataFromDBTable:(NSString *)tableName;
-+(void)sincMoments;
++(void)sincMomentsCompletion:(void(^)(void))completionBlock;
++(void)sincPlacesCompletion:(void(^)(void))completionBlock;
+
 
 
 +(void)saveNote:(Note *)newNote inPlace:(Place *)place completionDBBlock:(void(^)(void))completionDB remoteCompletionBlock:(void(^)(void))remoteCompletion remoteFailureBlock:(void(^)(void))remoteFailure;
-+(void)saveImage:(NSData *)imageData inPlace:(Place *)place withData:(NSDictionary *)data completionDBBlock:(void(^)(Moment *finalMom))completionDB remoteCompletionBlock:(void(^)(Moment *finalMom))remoteCompletion remoteFailureBlock:(void(^)(void))remoteFailure;
++(void)saveImage:(NSData *)imageData inPlace:(Place *)place withData:(NSDictionary *)data
+       imageUUID:(NSString *)uuid
+completionDBBlock:(void(^)(Moment *finalMom))completionDB
+remoteCompletionBlock:(void(^)(Moment *finalMom))remoteCompletion
+remoteFailureBlock:(void(^)(void))remoteFailure;
 
 
 +(void)loadFastDBImages:(void(^)(NSArray *images))imagesBlock fromContainerName:(NSString *)containerName;

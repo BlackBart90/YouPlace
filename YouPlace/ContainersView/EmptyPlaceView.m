@@ -154,7 +154,7 @@
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Regioni ricaricate " message:@"attendi per l'upload della foto" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
             [alert show];
         }];
-        [ParseData uploadImageWithData:dataFile andMoment:moment success:^{
+        [ParseData uploadImageWithData:dataFile imageUUID:[Utils createUUID] andMoment:moment success:^{
             NSLog(@"photo uploaded");
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Foto caricata " message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
             [alert show];

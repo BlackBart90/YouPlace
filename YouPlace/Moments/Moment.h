@@ -31,5 +31,6 @@ static NSString *kDefaultMomentNoteContent = @"defualt_moment_note_content";
 +(void)saveCurrentMomentInPlace:(Place *)place withData:(NSDictionary *)data withFinal:(void(^)(Moment *moment))finalBlock errorBlock:(void(^)(void))error;
 
 +(Moment *)newMomentwithPlace:(Place *)place withData:(NSDictionary *)data;
++(Moment *)sincronizeDBMoment:(Moment *)db_moment withParseMoment:(Moment *)parse_moment;
 
 @end

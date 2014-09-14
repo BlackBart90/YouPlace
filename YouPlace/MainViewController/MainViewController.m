@@ -113,11 +113,16 @@
 }
 -(void)userDidLoggedIn:(LoginViewController *)loginController
 {
-    [self startLocalization];
-    [self loadRegionsWithFinalBlock:^{
-        
-        [self loadContainers];
+    [DataManager sincMomentsCompletion:^{
+        [DataManager sincPlacesCompletion:^{
+            [self startLocalization];
+            [self loadRegionsWithFinalBlock:^{
+                
+                [self loadContainers];
+            }];
+        }];
     }];
+
 }
 -(void)didenterInbackground
 {

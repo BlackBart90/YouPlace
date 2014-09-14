@@ -9,11 +9,12 @@
 #import "DataManager.h"
 #import "Utils.h"
 #import "Contact.h"
+#import "MainViewController.h"
+#import "YPImage.h"
 
 @implementation DataManager
 
-+(void)initializeDataManagementWithOptions:(NSDictionary *)options
-{
++(void)initializeDataManagementWithOptions:(NSDictionary *)options inMainController:(MainViewController *)mainController{
     // PARSE
     [Parse setApplicationId:@"cJDOYQQLWxG7LpLal0HXloB30YEKVTv1ek2AwM8o" clientKey:@"kAIDv7HgWyqfkUCgcRDxgNNLBaMYZWV1ovJcWAM9"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:options];
@@ -22,8 +23,16 @@
     // DB
     [dbManager checkAndCreateDatabase];
     
-    [self sincMoments];
-    [self sincPlaces];
+    [self sincMomentsCompletion:^{
+        [self sincPlacesCompletion:^{
+            [mainController loadRegionsWithFinalBlock:^{
+                [mainController loadContainers];
+            }];
+        }];
+    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self sincAllImages];
+    });
 }
 
 
@@ -54,13 +63,19 @@
 }
 +(void)compareDBMomentsIDS:(NSArray *)dbids withParseOnes:(NSArray *)parseMoments
 {
+    
     for (Moment *singleMoment in parseMoments) {
+        Moment *resultMoment = [Moment sincronizeDBMoment:nil withParseMoment:singleMoment];
         if (![dbids containsObject:singleMoment.uniqueid]) {
-            [dbManager addMomentInDB:singleMoment];
+            [dbManager addMomentInDB:resultMoment];
+        }else
+        {
+            // update moment
+            [dbManager updateMoment:resultMoment];
         }
     }
     /*
-     /////to test this function..>>
+     ///// test this function..>>
      for (NSString *singleId in dbids )
      {
      BOOL check = NO;
@@ -77,6 +92,7 @@
 }
 #pragma mark - public methods -
 +(void)saveImage:(NSData *)imageData inPlace:(Place *)place withData:(NSDictionary *)data
+                        imageUUID:(NSString *)uuid
                         completionDBBlock:(void(^)(Moment *finalMom))completionDB
                         remoteCompletionBlock:(void(^)(Moment *finalMom))remoteCompletion
                         remoteFailureBlock:(void(^)(void))remoteFailure
@@ -87,13 +103,12 @@
     Moment *mom = [Moment newMomentwithPlace:place withData:data];
     NSAssert([mom validateMoment], @"moment is not complete");
     
-    
     [self saveNewMoment:mom inPlace:mom.place successParse:^{
         
         remoteCompletion(mom);
     } successDB:^(Moment *finalDBMoment) {
         
-        [dbManager saveImage:imageData withContainerName:finalDBMoment.containerName andUniqueid:[Utils createUUID]];
+        [dbManager saveImage:imageData withContainerName:finalDBMoment.containerName andUniqueid:uuid];
         completionDB(finalDBMoment);
 
     } failureParse:^{
@@ -146,7 +161,7 @@
 #pragma mark - data retriving - 
 
 //MOMENTS
-+(void)sincMoments
++(void)sincMomentsCompletion:(void(^)(void))completionBlock
 {
     //DB
     NSArray *momentDB = (NSArray *)[dbManager elementsFromTableName:@"Moments"];
@@ -169,11 +184,12 @@
         NSLog(@"db now are sincronized");
         ///////////////////////////
         }
+        completionBlock();
     } failure:^{
     
     }];
 }
-+(void)sincPlaces
++(void)sincPlacesCompletion:(void(^)(void))completionBlock
 {
     [ParseData getPlacesFromServerSuccess:^(NSArray *placesRemote) {
         if (placesRemote.count == 0) {
@@ -197,14 +213,72 @@
 
         } fromContainerName:nil];
         }
+        completionBlock();
     } failure:^{
         
     }];
+}
++(void)sincAllImages
+{
+    [ParseData loadImageWithContainerName:nil success:^(NSArray *arrayFile) {
+        
+        [self loadFastDBImages:^(NSArray *images) {
+            
+            
+            for (YPImage *remoteImage in arrayFile) {
+                BOOL check = NO;
+
+                if (images.count == 0) {
+                    // addImage
+                    if (remoteImage.fileData) {
+                        PFFile *dataFile = remoteImage.fileData;
+                        [dataFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                            
+                            if (!error) {
+                                [dbManager saveImage:imageData withContainerName:remoteImage.containerName andUniqueid:remoteImage.uniqueid];
+                            }else
+                            {
+                                NSLog(@"error : %@",error.description);
+                            }
+                        }];
+                    }
+
+                }else
+                {
+                for (YPImage *dbImage in images) {
+                    if ([remoteImage.uniqueid isEqualToString:dbImage.uniqueid]) {
+                        check = YES;
+                    }
+                }
+                    if (!check) {
+                        if (remoteImage.fileData) {
+                            PFFile *dataFile = remoteImage.fileData;
+                            [dataFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                                if (!error) {
+                                    [dbManager saveImage:imageData withContainerName:remoteImage.containerName andUniqueid:remoteImage.uniqueid];
+                                }
+                            }];
+                        }
+                        
+                    }else
+                    {
+                        // update image
+                        [dbManager updateImage:remoteImage];
+                    }
+ 
+                }
+            }
+        } fromContainerName:nil];
+    } error:^{
+        
+    }];
+
 }
 // IMAGES
 +(void)loadFastDBImages:(void(^)(NSArray *images))imagesBlock fromContainerName:(NSString *)containerName
 {
     imagesBlock([dbManager imagesFromContainer:containerName]);
+    // downloading in asinc the images
 }
 
 // NOTES

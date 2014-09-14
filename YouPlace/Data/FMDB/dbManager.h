@@ -12,6 +12,7 @@
 #import "Note.h"
 #import "Moment.h"
 #import "Contact.h"
+#import "YPImage.h"
 
 static NSString *kDBpath = @"/Library/Caches/youplace.sqlite";
 
@@ -37,6 +38,12 @@ static NSString *kDBpath = @"/Library/Caches/youplace.sqlite";
 +(void)addMomentInDB:(Moment *)moment;
 +(void)addPlaceInDB:(Place *)place;
 +(void)saveContact:(Contact *)contact;
+
+//updating data
+
++(void)updateMoment:(Moment *)newMoment;
++(void)updateImage:(YPImage *)newYPImage;
+
 
 //retriving data
 +(NSArray *)imagesFromContainer:(NSString *)containerName;

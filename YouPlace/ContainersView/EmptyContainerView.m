@@ -72,8 +72,9 @@
     NSDictionary * dictData = @{
                                 @"contName":self.containerTextField.text,
                                 };
-    
-    [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace] withData:dictData completionDBBlock:^(Moment *mom){
+    NSString *imageUUID = [Utils createUUID];
+
+    [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace]  withData:dictData imageUUID:imageUUID completionDBBlock:^(Moment *mom){
         
         [self.ptMainController loadRegionsWithFinalBlock:^{
             [self.ptMainController loadContainers];
@@ -82,7 +83,7 @@
         
     } remoteCompletionBlock:^(Moment *mom){
         
-        [ParseData uploadImageWithData:dataFile andMoment:mom success:^{
+        [ParseData uploadImageWithData:dataFile imageUUID:imageUUID andMoment:mom success:^{
             NSLog(@"photo uploaded");
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Foto caricata " message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
             [alert show];
