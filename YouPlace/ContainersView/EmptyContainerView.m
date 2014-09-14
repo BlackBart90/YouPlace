@@ -12,6 +12,7 @@
 #import "Moment.h"
 #import "ParseData.h"
 #import "Utils.h"
+#import "DataManager.h"
 
 @interface EmptyContainerView()<UITextFieldDelegate>
 
@@ -60,59 +61,38 @@
     [textField resignFirstResponder];
     return YES;
 }
-
 -(void)savePhotoForContainer:(id)sender
 {
-    if (self.containerTextField.text.length) {
-
-        [[FileUploaderManager sharedClass] newImageFromController:self.ptMainController andDelegate:self];
-    }
-        else{
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Dai un nome al container" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }
+    [[FileUploaderManager sharedClass] newImageFromController:self.ptMainController andDelegate:self];
+    
 }
 -(void)didUploadFileData:(NSData *)dataFile
 {
-    if (self.containerTextField.text.length) {
-  
+    
     NSDictionary * dictData = @{
                                 @"contName":self.containerTextField.text,
                                 };
     
-    [Moment saveCurrentMomentInPlace:[[self updatePlace] validatePlace] withData:dictData withFinal:^(Moment *moment) {
+    [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace] withData:dictData completionDBBlock:^(Moment *mom){
         
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hai salvato un momento " message:@"attendi" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alert show];
-        [self.ptMainController loadRegionsWithFinalBlock:^{
-            
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Regioni ricaricate " message:@"attendi per l'upload della foto" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }];
+        [self.ptMainController loadContainers];
         
         
-        [ParseData uploadImageWithData:dataFile andMoment:moment success:^{
+    } remoteCompletionBlock:^(Moment *mom){
+        
+        [ParseData uploadImageWithData:dataFile andMoment:mom success:^{
             NSLog(@"photo uploaded");
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Foto caricata " message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
             [alert show];
-            [self.ptMainController loadContainers];
-            
         } error:^{
             NSLog(@"error");
         }];
         
-    } errorBlock:^{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Qualcosa è andato storto" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }];
+    } remoteFailureBlock:^{
         
-    }else
-    {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Dai un nome al container" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    
+    }];
 }
+
 -(Place *)updatePlace
 {
     UIView *view = self.superview.superview;

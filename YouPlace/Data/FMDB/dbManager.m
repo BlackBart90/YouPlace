@@ -29,15 +29,14 @@
         NSLog(@"DB copied");
     }
 }
-#pragma mark - MOMENTS -
+#pragma mark - MOMENTS and PLACES -
 +(void)addMomentInDB:(Moment *)moment
 {
-    
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Moments (uniqueid,container_name,place_id) VALUES ('%@','%@','%@')",moment.uniqueid,moment.containerName,moment.place.uniqueid];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Moments (uniqueid,container_name,place_id,name,startDate,endDate) VALUES ('%@','%@','%@','%@','%@','%@')",moment.uniqueid,moment.containerName,moment.place.uniqueid,moment.name,moment.startDate,moment.endDate];
     [db beginTransaction];
     [db executeUpdate:sql];
     [db commit];
@@ -56,8 +55,8 @@
     [db commit];
     [db close];
 }
-#pragma mark - NOTES -
 
+#pragma mark - NOTES -
 +(void)addNoteInDB:(Note *)note
 {
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
@@ -121,7 +120,7 @@
     
     return images;
 }
-#pragma mark - contacts -
+#pragma mark - CONTACTS -
 +(void)saveContact:(Contact *)contact
 {
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];

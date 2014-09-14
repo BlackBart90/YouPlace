@@ -21,9 +21,15 @@
 -(Place *)validatePlace
 {
     if (!self || !self.name || !self.uniqueid || !self.lat || !self.lng) {
-        NSAssert(false, @"place is not complete");
+        
+        NSAssert(false,@"place is not complete");
+
         return nil;
     }else
         return self;
+}
+-(NSString *)debugDescription
+{
+    return self.name;
 }
 @end

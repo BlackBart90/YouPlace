@@ -186,9 +186,10 @@
     
     [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace] withData:dictData completionDBBlock:^(Moment *mom){
         
-        [self.ptMainController loadContainers];
-
-      
+        [self.ptMainController loadRegionsWithFinalBlock:^{
+            [self.ptMainController loadContainers];
+            
+        }];
     } remoteCompletionBlock:^(Moment *mom){
         
         [ParseData uploadImageWithData:dataFile andMoment:mom success:^{
@@ -213,6 +214,10 @@
     
     [DataManager saveNote:customNote inPlace:[[self updatePlace] validatePlace] completionDBBlock:^{
         NSLog(@"nota + momento salvato in locale");
+        [self.ptMainController loadRegionsWithFinalBlock:^{
+            [self.ptMainController loadContainers];
+            
+        }];
     } remoteCompletionBlock:^{
         NSLog(@"nota + momento salvato in remoto");
     } remoteFailureBlock:^{

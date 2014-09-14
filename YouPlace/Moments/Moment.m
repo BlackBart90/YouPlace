@@ -24,11 +24,9 @@
 //
 //   return [NSString stringWithFormat:@"%@\n %@\n %@\n %@\n %@\n %@\n %@\n",uniqueid_str,name_str,place_str,startDate_str,endDate_str,info_str,container_id_str];
 //}
--(NSString *)description
+-(NSString *)debugDescription
 {
-    NSString *name_str = [NSString stringWithFormat:@"Moment with name : %@",self.name];
-
-   return name_str;
+   return self.containerName;
 }
 -(Moment *)validateMoment
 {

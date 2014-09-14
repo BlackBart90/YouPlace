@@ -23,6 +23,7 @@
     [dbManager checkAndCreateDatabase];
     
     [self sincMoments];
+    [self sincPlaces];
 }
 
 
@@ -159,12 +160,45 @@
         for (Moment*momentParse in moments) {
             [parseIds addObject:momentParse];
         }
+        if (moments.count == 0) {
+            [dbManager deleteAllfromTable:@"Moments"];
+            NSLog(@"all moments canceled from db");
+        }else{
         //////compare moments ids//////
         [self compareDBMomentsIDS:dbIds withParseOnes:parseIds];
         NSLog(@"db now are sincronized");
         ///////////////////////////
+        }
     } failure:^{
     
+    }];
+}
++(void)sincPlaces
+{
+    [ParseData getPlacesFromServerSuccess:^(NSArray *placesRemote) {
+        if (placesRemote.count == 0) {
+            [dbManager deleteAllfromTable:@"Places"];
+            NSLog(@"all places canceles from db");
+            
+        }else{
+        [self loadPlaces:^(NSArray *placesDB) {
+
+            for (Place *remotePlace in placesRemote) {
+                BOOL existInDB = NO;
+                for (Place *dbPlace in placesDB) {
+                    if ([remotePlace isEqualToPlace:dbPlace]) {
+                        existInDB = YES;
+                    }
+                }
+                if (!existInDB) {
+                    [dbManager addPlaceInDB:remotePlace];
+                }
+            }
+
+        } fromContainerName:nil];
+        }
+    } failure:^{
+        
     }];
 }
 // IMAGES
@@ -181,9 +215,64 @@
 // PLACES
 +(void)loadPlaces:(void(^)(NSArray *places))placesBlock fromContainerName:(NSString *)containerName
 {
+    NSArray *placesDB = (NSArray *)[dbManager elementsFromTableName:@"Places"];
+    NSMutableArray *places = [NSMutableArray new];
+    for (NSDictionary *obj in placesDB) {
+        Place *singlePlace  = [Place new];
+        singlePlace.lat = [obj objectForKey:@"lat"];
+        singlePlace.lng = [obj objectForKey:@"lng"];
+        singlePlace.name = [obj objectForKey:@"name"];
+        singlePlace.regionRadius =  (int)[[obj objectForKey:@"region_radius"] integerValue];
+        singlePlace.uniqueid = [obj objectForKey:@"uniqueid"];
+        if ([singlePlace validatePlace]) {
+            [places addObject:singlePlace];
+        }
+    }
+    placesBlock(places);
+}
+//MOMENTS
++(void)loadMoments:(void(^)(NSArray *moments))momentsBlock fromContainerName:(NSString *)containerName
+{
+    NSArray *momentsDB = (NSArray *)[dbManager elementsFromTableName:@"Moments"];
+    NSMutableArray *moments = [NSMutableArray new];
     
+    [self loadPlaces:^(NSArray *places) {
+        
+        
+        for (NSDictionary *obj in momentsDB) {
+            Moment *singleMoment = [Moment new];
+            singleMoment.containerName = [obj objectForKey:@"container_name"];
+            singleMoment.startDate = [obj objectForKey:@"startDate"];
+            singleMoment.endDate = [obj objectForKey:@"endDate"];
+            singleMoment.uniqueid = [obj objectForKey:@"uniqueid"];
+            singleMoment.name = [obj objectForKey:@"name"];
+            singleMoment.info = @{};
+            
+            BOOL check = FALSE;
+            for (Place *singlePlace in places) {
+                if ([singlePlace.uniqueid isEqualToString:[obj objectForKey:@"place_id"]]) {
+                    singleMoment.place = singlePlace;
+                    check = TRUE;
+                    break;
+                }
+            }
+            
+            if (!check) {
+                NSLog(@"non esiste il posto");
+            }
+            if ([singleMoment validateMoment]) {
+                [moments addObject:singleMoment];
+            }
+        }
+        
+        momentsBlock(moments);
+
+    } fromContainerName:nil];
+    
+  
 }
 // CONTACTS
+
 
 +(id)retriveDataFromDBTable:(NSString *)tableName
 {

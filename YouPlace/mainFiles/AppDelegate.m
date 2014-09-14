@@ -25,8 +25,9 @@
     navRoot.navigationBar.translucent = NO;
     self.window.rootViewController = navRoot;
     [self.window makeKeyAndVisible];
-    [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     
+    [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+
     // Override point for customization after application launch.
     return YES;
 }

@@ -23,6 +23,7 @@
 #import "FileUploaderManager.h"
 #import "MyRegionsManager.h"
 #import "DetailContainerViewController.h"
+#import "DataManager.h"
 
 @interface MainViewController ()<CLLocationManagerDelegate,MKMapViewDelegate,UITextFieldDelegate,PlaceScrollerProtocol,UIImagePickerControllerDelegate,LoginDelegate>
 {
@@ -127,22 +128,19 @@
 -(void)loadContainers
 {
     __block PlaceScroller *ptPlaceScroller = self.placeScroll;
-    [ParseData getMomentsFromServerSuccess:^(NSArray *moments) {
+    
+    
+    [DataManager loadMoments:^(NSArray *moments) {
         
         m_manager = [[MomentsManager alloc]initWithMoments:moments];
-        
         //NSArray *placesArray = [m_manager divideAllMomentsByPlaces];
-       // NSArray *momentsContainer = [m_manager momentsContainersFromArray:placesArray andCurrentPlace:self.currentPlace];
+        // NSArray *momentsContainer = [m_manager momentsContainersFromArray:placesArray andCurrentPlace:self.currentPlace];
         NSArray *array = [m_manager divideAllMomentsByMomentContainer];
-        
         NSArray *momentsContainer = [m_manager momentsContainersFromArray:array andCurrentPlace:self.currentPlace];
-
         ptPlaceScroller.dataSource = [[NSMutableArray alloc]initWithArray:momentsContainer];
         [ptPlaceScroller reloadData];
         ptPlaceScroller.backgroundColor = [UIColor clearColor];
-        
-    } failure:^{
-    }];
+    } fromContainerName:nil];
 
 }
 -(void)removeAllRegions
@@ -155,13 +153,12 @@
 -(void)loadRegionsWithFinalBlock:(void(^)(void))finalBlock
 {
     [self removeAllRegions];
-    
-    [ParseData getPlacesFromServerSuccess:^(NSArray *places) {
+    [DataManager loadPlaces:^(NSArray *places) {
+        
         [self addRegionsInPlaces:places];
         finalBlock();
-    } failure:^{
         
-    }];
+    } fromContainerName:nil];
 }
 -(void)addRegionsInPlaces:(NSArray *)places
 {
@@ -231,8 +228,9 @@
     if ([object isKindOfClass:[MomentContainer class]]) {
         [self.placeScroll scrollToItemFromMomentContainer:object scrollToFirst:NO];
     }
+    
     NSLog(@"%@",message);
-
+    
     MyRegion *reg = [self currentRegionFromCLRegion:region];
     self.currentPlace = reg.place;
     self.insideRegion = YES;
@@ -271,7 +269,7 @@
     [MyRegionsManager checkCoordinates:CLLocationCoordinate2DMake(latdouble,lngdouble) inRegions:self.allRegions successBlock:^(Place *place) {
         self.currentPlace = place;
         self.insideRegion = YES;
-        NSLog(@"luogo conosiuto");
+        NSLog(@"luogo conosciuto");
                 
     } failure:^{
         NSLog(@"luogo non conosciuto imposto un posto temporaneo");
