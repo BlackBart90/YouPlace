@@ -79,8 +79,8 @@
 		EAB4A64D19BC904A0021378D /* WildcardGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB4A64C19BC904A0021378D /* WildcardGestureRecognizer.m */; };
 		EAE07976198EC8FB00E462D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE07975198EC8FB00E462D3 /* MapKit.framework */; };
 		EAF05E8819C45DB20005EF79 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF05E8719C45DB20005EF79 /* Contact.m */; };
-		EAF8AC0E19C5067C00966FF0 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAF8AC0D19C5067C00966FF0 /* youplace.sqlite */; };
-		EAF8AC0F19C5067C00966FF0 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAF8AC0D19C5067C00966FF0 /* youplace.sqlite */; };
+		EAF8AC1119C516C100966FF0 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAF8AC1019C516C100966FF0 /* youplace.sqlite */; };
+		EAF8AC1219C516C100966FF0 /* youplace.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EAF8AC1019C516C100966FF0 /* youplace.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,7 +208,7 @@
 		EAE07975198EC8FB00E462D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		EAF05E8619C45DB20005EF79 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		EAF05E8719C45DB20005EF79 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
-		EAF8AC0D19C5067C00966FF0 /* youplace.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = youplace.sqlite; path = YouPlace/youplace.sqlite; sourceTree = SOURCE_ROOT; };
+		EAF8AC1019C516C100966FF0 /* youplace.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = youplace.sqlite; path = YouPlace/youplace.sqlite; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,7 +327,7 @@
 				EAB4A5CD19BC83D00021378D /* en.lproj */,
 				EAB4A53319BC7BDB0021378D /* InfoPlist.strings */,
 				EAB4A54319BC7BDB0021378D /* Images.xcassets */,
-				EAF8AC0D19C5067C00966FF0 /* youplace.sqlite */,
+				EAF8AC1019C516C100966FF0 /* youplace.sqlite */,
 				EAB4A57119BC7BDB0021378D /* webFont.ttf */,
 				EAB4A64719BC84190021378D /* YouPlace-Info.plist */,
 				EAB4A64819BC84190021378D /* YouPlace-Prefix.pch */,
@@ -666,7 +666,7 @@
 				EAB4A64919BC84190021378D /* YouPlace-Info.plist in Resources */,
 				EAB4A63019BC83D00021378D /* LoginViewController.xib in Resources */,
 				EAB4A62619BC83D00021378D /* InfoPlist.strings in Resources */,
-				EAF8AC0E19C5067C00966FF0 /* youplace.sqlite in Resources */,
+				EAF8AC1119C516C100966FF0 /* youplace.sqlite in Resources */,
 				EAB4A61C19BC83D00021378D /* SinglePlaceView.xib in Resources */,
 				EAB4A61719BC83D00021378D /* EmptyContainerView.xib in Resources */,
 				EAB4A58D19BC7BDB0021378D /* Images.xcassets in Resources */,
@@ -683,7 +683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA487CFF1982D7A4007EBA50 /* InfoPlist.strings in Resources */,
-				EAF8AC0F19C5067C00966FF0 /* youplace.sqlite in Resources */,
+				EAF8AC1219C516C100966FF0 /* youplace.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -75,8 +75,10 @@
     
     [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace] withData:dictData completionDBBlock:^(Moment *mom){
         
-        [self.ptMainController loadContainers];
-        
+        [self.ptMainController loadRegionsWithFinalBlock:^{
+            [self.ptMainController loadContainers];
+            
+        }];
         
     } remoteCompletionBlock:^(Moment *mom){
         
