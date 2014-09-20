@@ -18,4 +18,7 @@
 
 @property (nonatomic,strong) PFFile *fileData;
 @property (nonatomic,strong) NSString * containerName;
+
+-(YPImage *)validateImage;
+
 @end

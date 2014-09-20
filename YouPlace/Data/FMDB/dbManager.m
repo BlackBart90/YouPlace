@@ -1,5 +1,6 @@
 
 
+
 //  dbManager.m
 //  AlTriangolo
 //
@@ -53,6 +54,8 @@
     
     NSString *sql = [NSString stringWithFormat:@"UPDATE Moments SET container_name = '%@',place_id = '%@',name = '%@',startDate = '%@',endDate = '%@' WHERE uniqueid = '%@'",newMoment.containerName,newMoment.place.uniqueid,newMoment.name,newMoment.startDate,newMoment.endDate,newMoment.uniqueid];
     [db beginTransaction];
+    //db.traceExecution = YES;
+
     [db executeUpdate:sql];
     [db commit];
     [db close];
@@ -129,14 +132,19 @@
     if (containerName) {
         query  = [NSString stringWithFormat:@"SELECT * FROM Photos WHERE container_name == '%@'",containerName];
     }
-    NSMutableArray *images = [NSMutableArray new];
+    NSMutableArray *images = [[NSMutableArray alloc]init];
     NSArray *data = [self getArrayFromQuery:query];
     for (NSDictionary *obj in data) {
         YPImage*singleImage = [YPImage new];
-        singleImage.imageData = [UIImage imageWithData:[obj objectForKey:@"image"]];
-        singleImage.containerName = [obj objectForKey:@"container_name"];
-        singleImage.uniqueid = [obj objectForKey:@"uniqueid"];
-        [images addObject:singleImage];
+        if ([UIImage imageWithData:[obj objectForKey:@"image"]]) {
+            singleImage.imageData = [UIImage imageWithData:[obj objectForKey:@"image"]];
+
+            singleImage.containerName = [obj objectForKey:@"container_name"];
+            singleImage.uniqueid = [obj objectForKey:@"uniqueid"];
+        
+            singleImage = [singleImage validateImage]; // is not usefull
+            [images addObject:singleImage];
+        }
     }
     
     return images;
@@ -145,14 +153,14 @@
 {
     
     NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
-    NSData *dataImage = [NSData dataWithData:UIImagePNGRepresentation(newYPImage.imageData)];
+ //   NSData *dataImage = [NSData dataWithData:UIImagePNGRepresentation(newYPImage.imageData)];
 
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
     [db beginTransaction];
-    
-    
-    [db executeUpdate:@"UPDATE Photos SET image = ?,container_name = '%@' WHERE uniqueid = '%@'",dataImage,newYPImage.containerName,newYPImage.uniqueid];
+    //db.traceExecution = YES;
+    //@"UPDATE Photos SET image = ?,container_name = ? WHERE uniqueid = ?",dataImage,newYPImage.containerName,newYPImage.uniqueid
+    [db executeUpdate:@"UPDATE Photos SET container_name = ? WHERE uniqueid = ?",newYPImage.containerName,newYPImage.uniqueid];
     [db commit];
     [db close];
     
@@ -164,9 +172,59 @@
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Contacts (uniqueid,name,surname,tel,link_fb,link_tw,address,email,note,container_name) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",contact.uniqueid,contact.name,contact.surname,contact.tel,contact.link_fb,contact.ling_tw,contact.address,contact.email,contact.note,contact.containerName];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Contacts (uniqueid,name,surname,tel,link_fb,link_tw,address,email,note,container_name) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",contact.uniqueid,contact.name,contact.surname,contact.tel,contact.link_fb,contact.link_tw,contact.address,contact.email,contact.note,contact.containerName];
+    
     [db beginTransaction];
     [db executeUpdate:sql];
+    [db commit];
+    [db close];
+    
+}
++(NSArray *)loadContactsFromContainerName:(NSString *)containerName
+{
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM Contacts WHERE container_name == '%@'",containerName];
+    
+    NSMutableArray *contacts = [NSMutableArray new];
+    NSArray *data = [self getArrayFromQuery:query];
+    
+    for (NSDictionary *dataItem in data) {
+        
+        Contact *cont = [Contact new];
+        cont.containerName = [dataItem objectForKey:@"container_name"];
+        cont.address = [dataItem objectForKey:@"address"];
+        cont.email = [dataItem objectForKey:@"email"];
+        cont.link_fb = [dataItem objectForKey:@"link_fb"];
+        cont.link_tw = [dataItem objectForKey:@"link_tw"];
+        cont.name = [dataItem objectForKey:@"name"];
+        cont.note = [dataItem objectForKey:@"note"];
+        cont.tel=  [dataItem objectForKey:@"tel"];
+        cont.uniqueid = [dataItem objectForKey:@"uniqueid"];
+        cont.surname = [dataItem objectForKey:@"surname"];
+        
+        [contacts addObject:cont];
+        /*
+        if ([cont validateContact]) {
+            [contacts addObject:cont];
+        }else
+        {
+            NSLog(@"contacts not loaded correctly");
+        }*/
+        cont = nil;
+    }
+    return (NSArray *)contacts;
+}
+
+// method not yet tested
+-(void)updateContactFromContact:(Contact *)newContact
+{
+    NSString *dbPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(),kDBpath];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    [db beginTransaction];
+   
+    [db executeUpdate:@"UPDATE Contacts SET address = ?,email = ?,link_fb = ?,link_tw = ?,name = ?,note = ?,tel = ?,surname = ?,container_name = ? WHERE uniqueid = ?",newContact.address,newContact.email,newContact.link_fb,newContact.link_tw,newContact.name,newContact.note,newContact.tel,newContact.surname,newContact.containerName,newContact.uniqueid];
+    
     [db commit];
     [db close];
     

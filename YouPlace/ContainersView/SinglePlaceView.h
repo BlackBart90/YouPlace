@@ -13,6 +13,9 @@
 #import "FileUploaderManager.h"
 #import "Place.h"
 #import "TappedView.h"
+#import "BrutalUIImageView.h"
+#import "NewMomentButton.h"
+
 
 @import CoreLocation;
 @class SinglePlaceView;
@@ -30,6 +33,7 @@
 @property (nonatomic,strong) MomentContainer *ownContainer;
 
 @property (nonatomic,assign) BOOL currentPlace;
+@property (nonatomic,weak) IBOutlet UIView *containerNameView;
 @property (nonatomic,weak) IBOutlet UILabel *placeName;
 @property (nonatomic,weak) IBOutlet UILabel *n_moments;
 
@@ -45,21 +49,18 @@
 @property (nonatomic,assign) CLLocationCoordinate2D coordinates;
 
 
-
+@property (nonatomic,weak) IBOutlet NewMomentButton *addPhotosButton;
 // temporary
-@property (nonatomic,weak) IBOutlet PFImageView *imageViewTest;
-@property (nonatomic,weak) IBOutlet PFImageView *imageViewTest_2;
-@property (nonatomic,weak) IBOutlet PFImageView *imageViewTest_3;
-
-
-//
+@property (nonatomic,weak) IBOutlet BrutalUIImageView *imageViewTest_2;
+@property (nonatomic,weak) IBOutlet BrutalUIImageView *imageViewTest_3;
 
 
 @property (nonatomic,weak) id <PlaceViewProtocol> delegate;
 + (SinglePlaceView *)loadSinglePlaceView;
+- (void)loadImages;
 
--(IBAction)saveMoment:(id)sender;
 -(IBAction)savePhoto:(id)sender;
 -(IBAction)saveNote:(id)sender;
+-(IBAction)saveContact:(id)sender;
 
 @end

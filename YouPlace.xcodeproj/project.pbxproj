@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA39599D19C7A43500A13862 /* BrutalUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA39599C19C7A43500A13862 /* BrutalUIImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA487CD31982D7A4007EBA50 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD21982D7A4007EBA50 /* Foundation.framework */; };
 		EA487CD51982D7A4007EBA50 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD41982D7A4007EBA50 /* CoreGraphics.framework */; };
 		EA487CD71982D7A4007EBA50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA487CD61982D7A4007EBA50 /* UIKit.framework */; };
@@ -25,6 +26,7 @@
 		EA607F38198E45FA00F1C094 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA607F37198E45FA00F1C094 /* Security.framework */; };
 		EA607F3A198E460600F1C094 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA607F39198E460600F1C094 /* SystemConfiguration.framework */; };
 		EA607F3F198E4A4700F1C094 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA607F3E198E4A4700F1C094 /* FacebookSDK.framework */; };
+		EA675D7C19CDC0E100FF1833 /* NewMomentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA675D7B19CDC0E100FF1833 /* NewMomentButton.m */; };
 		EAB4A58519BC7BDB0021378D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A53319BC7BDB0021378D /* InfoPlist.strings */; };
 		EAB4A58D19BC7BDB0021378D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A54319BC7BDB0021378D /* Images.xcassets */; };
 		EAB4A5A719BC7BDB0021378D /* webFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A57119BC7BDB0021378D /* webFont.ttf */; };
@@ -96,6 +98,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA39599B19C7A43500A13862 /* BrutalUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrutalUIImageView.h; sourceTree = "<group>"; };
+		EA39599C19C7A43500A13862 /* BrutalUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrutalUIImageView.m; sourceTree = "<group>"; };
 		EA487CCF1982D7A4007EBA50 /* YouPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA487CD21982D7A4007EBA50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA487CD41982D7A4007EBA50 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +119,8 @@
 		EA607F37198E45FA00F1C094 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EA607F39198E460600F1C094 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EA607F3E198E4A4700F1C094 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		EA675D7A19CDC0E100FF1833 /* NewMomentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMomentButton.h; sourceTree = "<group>"; };
+		EA675D7B19CDC0E100FF1833 /* NewMomentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMomentButton.m; sourceTree = "<group>"; };
 		EAB4A53419BC7BDB0021378D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EAB4A54319BC7BDB0021378D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EAB4A57119BC7BDB0021378D /* webFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = webFont.ttf; sourceTree = "<group>"; };
@@ -309,6 +315,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EA675D7919CDC0E100FF1833 /* NewMomentButton */ = {
+			isa = PBXGroup;
+			children = (
+				EA675D7A19CDC0E100FF1833 /* NewMomentButton.h */,
+				EA675D7B19CDC0E100FF1833 /* NewMomentButton.m */,
+			);
+			name = NewMomentButton;
+			path = YouPlace/NewMomentButton;
+			sourceTree = SOURCE_ROOT;
+		};
 		EAB4A51719BC7BDB0021378D /* YouPlace */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +332,7 @@
 				EAB4A5EB19BC83D00021378D /* MainViewController */,
 				EAB4A5B919BC83D00021378D /* Data */,
 				EAB4A5AB19BC83D00021378D /* ContainersView */,
+				EA675D7919CDC0E100FF1833 /* NewMomentButton */,
 				EAB4A5CA19BC83D00021378D /* DetailContainerController */,
 				EAB4A5D019BC83D00021378D /* FileManager */,
 				EAB4A5D319BC83D00021378D /* HistoryController */,
@@ -356,6 +373,8 @@
 				EAB4A5B619BC83D00021378D /* SinglePlaceView.xib */,
 				EAB4A5B719BC83D00021378D /* TappedView.h */,
 				EAB4A5B819BC83D00021378D /* TappedView.m */,
+				EA39599B19C7A43500A13862 /* BrutalUIImageView.h */,
+				EA39599C19C7A43500A13862 /* BrutalUIImageView.m */,
 			);
 			name = ContainersView;
 			path = YouPlace/ContainersView;
@@ -735,6 +754,7 @@
 				EAB4A63D19BC83D00021378D /* Note.m in Sources */,
 				EAB4A63F19BC83D00021378D /* AESCrypt.m in Sources */,
 				EAB4A63419BC83D00021378D /* MainViewController.m in Sources */,
+				EA675D7C19CDC0E100FF1833 /* NewMomentButton.m in Sources */,
 				EAB4A62119BC83D00021378D /* FMDatabasePool.m in Sources */,
 				EAB4A63819BC83D00021378D /* Moment.m in Sources */,
 				EAB4A62819BC83D00021378D /* HistoryViewController.m in Sources */,
@@ -749,6 +769,7 @@
 				EAB4A61619BC83D00021378D /* EmptyContainerView.m in Sources */,
 				EAB4A62019BC83D00021378D /* FMDatabase.m in Sources */,
 				EAB4A63219BC83D00021378D /* main.m in Sources */,
+				EA39599D19C7A43500A13862 /* BrutalUIImageView.m in Sources */,
 				EAB4A63119BC83D00021378D /* AppDelegate.m in Sources */,
 				EAB4A64219BC83D00021378D /* NSString+Base64.m in Sources */,
 			);

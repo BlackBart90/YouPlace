@@ -22,7 +22,10 @@
     }
     return self;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setHidden:NO];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

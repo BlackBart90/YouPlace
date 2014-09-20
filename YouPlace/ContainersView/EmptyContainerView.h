@@ -16,8 +16,7 @@
 @property (nonatomic,weak) IBOutlet UIView *containerView;
 
 
-
--(IBAction)saveMomentForContainer:(id)sender;
 -(IBAction)savePhotoForContainer:(id)sender;
 -(IBAction)saveNoteForContainer:(id)sender;
+-(IBAction)saveContactForContainer:(id)sender;
 @end

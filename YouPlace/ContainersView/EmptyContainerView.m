@@ -61,11 +61,75 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+#pragma mark - save actions -
 -(void)savePhotoForContainer:(id)sender
 {
-    [[FileUploaderManager sharedClass] newImageFromController:self.ptMainController andDelegate:self];
-    
+    if (self.containerTextField.text.length) {
+        [[FileUploaderManager sharedClass] newImageFromController:self.ptMainController andDelegate:self];
+ 
+    }
+    else
+    {
+        UIAlertView *alertMessage = [[UIAlertView alloc]initWithTitle:@"name empty" message:@"fill the container name" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        [alertMessage show];
+    }
 }
+-(void)saveNoteForContainer:(id)sender
+{
+
+    if (self.containerTextField.text.length) {
+
+    
+    Note *customNote = [[Note alloc]init];
+    customNote.content = @"nota di prova per vedere se va";
+    customNote.containerName = self.containerTextField.text;
+    customNote.title = @"titolo di prova";
+    
+    [DataManager saveNote:customNote inPlace:[[self updatePlace] validatePlace] completionDBBlock:^{
+        NSLog(@"nota + momento salvato in locale");
+        [self.ptMainController loadRegionsWithFinalBlock:^{
+            [self.ptMainController loadContainers];
+            
+        }];
+    } remoteCompletionBlock:^{
+        NSLog(@"nota + momento salvato in remoto");
+    } remoteFailureBlock:^{
+        NSLog(@"qualcosa è andato storto in remoto");
+        
+    }];
+    }
+    else
+    {
+        UIAlertView *alertMessage = [[UIAlertView alloc]initWithTitle:@"name empty" message:@"fill the container name" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        [alertMessage show];
+    }
+}
+-(void)saveContactForContainer:(id)sender
+{
+    if (self.containerTextField.text.length) {
+
+    Contact *testContact = [Contact new];
+    testContact.name = @"Jacopo_2";
+    testContact.tel = @"332325234";
+    testContact.containerName = self.containerTextField.text;
+    
+    [DataManager saveContact:testContact inPlace:[[self updatePlace] validatePlace] completionDBBlock:^{
+        NSLog(@"contatto salvato nel db");
+    } remoteCompletionBlock:^{
+        
+    } remoteFailureBlock:^{
+        
+    }];
+    }
+    else
+    {
+        UIAlertView *alertMessage = [[UIAlertView alloc]initWithTitle:@"name empty" message:@"fill the container name" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        [alertMessage show];
+    }
+}
+
+#pragma mark - support functions -
 -(void)didUploadFileData:(NSData *)dataFile
 {
     
@@ -73,7 +137,7 @@
                                 @"contName":self.containerTextField.text,
                                 };
     NSString *imageUUID = [Utils createUUID];
-
+    
     [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace]  withData:dictData imageUUID:imageUUID completionDBBlock:^(Moment *mom){
         
         [self.ptMainController loadRegionsWithFinalBlock:^{
@@ -102,64 +166,6 @@
     PlaceScroller *ptPlaceScroller = (PlaceScroller *) view;
     MainViewController *mainController = (MainViewController *) ptPlaceScroller.superview.nextResponder;
     return [mainController getCurrentPlace];
-}
-
-
--(void)saveMomentForContainer:(id)sender{
-    /*
-    [self saveCurrentMomentInPlace:[self updatePlace] withFinal:^(Moment *moment) {
-        
-        NSLog(@"OK");
-        
-        [self.ptMainController loadRegionsWithFinalBlock:^{
-            
-            [self.ptMainController loadContainers];
-        }];
-    } errorBlock:^{
-        
-    }];
-     */
-}
-
--(void)saveNoteForContainer:(id)sender
-{
-    
-    NSDictionary * dictData = @{
-                                kMomentNoteContentKEY:@"testo di prova",
-                                };
-    [Moment saveCurrentMomentInPlace:[[self updatePlace] validatePlace] withData:dictData withFinal:^(Moment *moment) {
-        
-        [self.ptMainController loadRegionsWithFinalBlock:^{
-            [self.ptMainController loadContainers];
-            
-        }];
-        
-    } errorBlock:^{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Qualcosa è andato storto" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }];
-    
-}
--(Place *)completePlace:(Place *)incompletePlace
-{
-    if (self.containerTextField.text.length ) {
-        
-        if (incompletePlace.lat && incompletePlace.lng && incompletePlace.uniqueid) {
-            incompletePlace.name = @"default_place_name"; // fix this in future
-            incompletePlace.regionRadius = 50;
-            return incompletePlace;
-            
-        }else
-        {
-            NSLog(@"place without lat / lng or uniqueid");
-            return nil;
-        }
-    }else
-    {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Riempi il container" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alert show];
-        return nil;
-    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.

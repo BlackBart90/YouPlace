@@ -10,4 +10,14 @@
 
 @implementation YPImage
 
+-(YPImage *)validateImage
+{
+    if (!self || !self.containerName || !self.uniqueid) {
+        NSString *imageStringAssert = [NSString  stringWithFormat:@"image in %@:  is not complete",self.containerName];
+        NSAssert(false,imageStringAssert);
+        return nil;
+    }
+    else
+        return self;
+}
 @end

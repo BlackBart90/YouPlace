@@ -12,7 +12,7 @@
 
 +(void)localNotificationWithMessage:(NSString *)message
 {
-    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+   // UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     
     // if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
 

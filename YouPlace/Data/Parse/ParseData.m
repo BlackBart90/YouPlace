@@ -26,7 +26,7 @@
         return;
     }
     
-    NSDictionary *dictData  = [NSDictionary new];
+    NSDictionary *dictData;
         PFUser *currentUser = [PFUser currentUser];
     
         if (currentUser) {
@@ -97,7 +97,7 @@
         return;
     }
     
-    NSDictionary *dictData  = [NSDictionary new];
+    NSDictionary *dictData;
     PFUser *currentUser = [PFUser currentUser];
     
     if (currentUser) {
@@ -235,7 +235,7 @@
         return;
     }
     
-    NSDictionary *dictData  = [NSDictionary new];
+    NSDictionary *dictData ;
     PFUser *currentUser = [PFUser currentUser];
     
     if (currentUser) {
@@ -367,7 +367,7 @@
         return;
     }
     
-    NSDictionary *dictData  = [NSDictionary new];
+    NSDictionary *dictData;
     PFUser *currentUser = [PFUser currentUser];
     
     if (currentUser) {
@@ -460,8 +460,8 @@
 
         return;
     }
-    NSDictionary *dictDataMoment  = [NSDictionary new];
-    NSDictionary *dictDataPlace  = [NSDictionary new];
+    NSDictionary *dictDataMoment ;
+    NSDictionary *dictDataPlace;
 
     PFUser *currentUser = [PFUser currentUser];
     
@@ -678,6 +678,7 @@
         
     }
 }
+
 +(void)loadImageWithContainerName:(NSString *)containerName success:(void(^)(NSArray *arrayFile))success error:(void(^)(void))errorBlock
 {
     PFUser *currentUser = [PFUser currentUser];

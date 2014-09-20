@@ -20,19 +20,23 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:options];
     [PFFacebookUtils initializeFacebook];
     
-    // DB
+//    // DB
     [dbManager checkAndCreateDatabase];
     
     [self sincMomentsCompletion:^{
+        NSLog(@"moments sinc");
         [self sincPlacesCompletion:^{
-            [mainController loadRegionsWithFinalBlock:^{
-                [mainController loadContainers];
+            NSLog(@"places sinc");
+            [self sincAllImagesWithCompletion:^{
+                NSLog(@"images sinc");
+               [mainController loadRegionsWithFinalBlock:^{
+               [mainController loadContainers];
+               }];
             }];
         }];
     }];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self sincAllImages];
-    });
+
+ 
 }
 
 
@@ -152,9 +156,13 @@
                     remoteCompletionBlock:(void(^)(void))remoteCompletion
                     remoteFailureBlock:(void(^)(void))remoteFailure
 {
-    NSAssert([contact validateContact], @"contact is not valid");
+   // NSAssert([contact validateContact], @"contact is not valid");
     // contacts are saved ONLY in DB
-    [dbManager saveContact:contact];
+    
+    NSAssert(contact.containerName, @"contact has not container");
+    if (contact.containerName.length) {
+        [dbManager saveContact:contact];
+    }
     completionDB();
 }
 
@@ -181,8 +189,6 @@
         }else{
         //////compare moments ids//////
         [self compareDBMomentsIDS:dbIds withParseOnes:parseIds];
-        NSLog(@"db now are sincronized");
-        ///////////////////////////
         }
         completionBlock();
     } failure:^{
@@ -218,16 +224,14 @@
         
     }];
 }
-+(void)sincAllImages
++(void)sincAllImagesWithCompletion:(void(^)(void))completion
 {
     [ParseData loadImageWithContainerName:nil success:^(NSArray *arrayFile) {
         
         [self loadFastDBImages:^(NSArray *images) {
             
-            
             for (YPImage *remoteImage in arrayFile) {
                 BOOL check = NO;
-
                 if (images.count == 0) {
                     // addImage
                     if (remoteImage.fileData) {
@@ -255,19 +259,34 @@
                             PFFile *dataFile = remoteImage.fileData;
                             [dataFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
                                 if (!error) {
+                                    NSAssert(imageData, @"imageData is nil");
                                     [dbManager saveImage:imageData withContainerName:remoteImage.containerName andUniqueid:remoteImage.uniqueid];
+
                                 }
                             }];
                         }
                         
                     }else
                     {
-                        // update image
+                        /*
+                        PFFile *dataFile = remoteImage.fileData;
+
+                        [dataFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                            if (!error) {
+                                remoteImage.imageData = [UIImage imageWithData:imageData];
+                                NSLog(@"remote container name : %@",remoteImage.containerName);
+                                // update image
+                                [dbManager updateImage:remoteImage];
+                              
+                            }
+                        }];
+                        */
                         [dbManager updateImage:remoteImage];
                     }
  
                 }
             }
+            completion();
         } fromContainerName:nil];
     } error:^{
         
@@ -346,7 +365,11 @@
   
 }
 // CONTACTS
-
++(void)loadContacts:(void(^)(NSArray *contacts))contactsBlock fromContainerName:(NSString *)containerName
+{
+   contactsBlock([dbManager loadContactsFromContainerName:containerName]);
+    
+}
 
 +(id)retriveDataFromDBTable:(NSString *)tableName
 {

@@ -48,6 +48,7 @@ static NSString *kDBpath = @"/Library/Caches/youplace.sqlite";
 //retriving data
 +(NSArray *)imagesFromContainer:(NSString *)containerName;
 +(NSArray *)loadNotesFromContainerName:(NSString *)containerName;
++(NSArray *)loadContactsFromContainerName:(NSString *)containerName;
 
 
 @end

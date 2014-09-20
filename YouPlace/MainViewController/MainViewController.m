@@ -75,21 +75,21 @@
     [super viewDidLoad];
   
     tmpPlace = [Place new];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didenterInbackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    
     int height = 10;
-    
-    if ([[UIScreen mainScreen] bounds].size.height > 500) {
-        height = self.view.bounds.size.height-44-20;
-    }else
-    {
-        height = [[UIScreen mainScreen] bounds].size.height-44-20;
-    }
-    
-    self.placeScroll = [[PlaceScroller alloc]initWithFrame:CGRectMake(0, 0, 320, height) andDataSource:nil];
+    int origin = self.view.frame.origin.y;
+    NSLog(@"origin : %i",origin);
+    height = [[UIScreen mainScreen] bounds].size.height;
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.placeScroll = [[PlaceScroller alloc]initWithFrame:CGRectMake(0,origin, self.view.bounds.size.width,height) andDataSource:nil];
     self.placeScroll.delegateScroller = self;
     [self.view addSubview:self.placeScroll];
+}
+-(BOOL) prefersStatusBarHidden
+{
+    return YES;
 }
 -(void)didBecomeActive
 {
@@ -99,7 +99,6 @@
         LoginViewController *loginController = [[LoginViewController alloc]init];
         loginController.delegate = self;
         [self presentViewController:loginController animated:YES completion:^{
-        
             NSLog(@"present login");
         }];
     }else
@@ -128,12 +127,10 @@
 {
     NSLog(@"enter in background");
     [self.locationManager stopUpdatingLocation];
-
 }
 -(void)loadContainers
 {
     __block PlaceScroller *ptPlaceScroller = self.placeScroll;
-    
     
     [DataManager loadMoments:^(NSArray *moments) {
         
@@ -210,7 +207,9 @@
 
 
 -(void)viewWillAppear:(BOOL)animated
-{    
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
     self.locMan = [[LocationsManager alloc]init];
     self.insideRegion = NO;
 }

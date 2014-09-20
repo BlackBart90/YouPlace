@@ -13,7 +13,7 @@
 
 -(Contact *)validateContact
 {
-    if (!self || !self.name || !self.uniqueid || !self.surname || !self.tel || !self.email || !self.ling_tw || !self.link_fb || !self.address || !self.note || !self.containerName) {
+    if (!self || !self.name || !self.uniqueid || !self.surname || !self.tel || !self.email || !self.link_tw || !self.link_fb || !self.address || !self.note || !self.containerName) {
         
         NSAssert(false, @"contact is not complete");
         return nil;

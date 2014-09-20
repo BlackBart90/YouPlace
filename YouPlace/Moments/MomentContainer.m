@@ -52,13 +52,14 @@
                 }else
                 {
                     if (![self.mainPlaceId isEqualToString:ptMoment.place.uniqueid]) {
-                        NSLog(@"error: the moments is not part of this set >> moment added ");
+                        
+                   //     NSLog(@"error: the moments is not part of this set >> moment added ");
                         [self.dataSourceMoments addObject:ptMoment];
 
                     }else
                     {
-                        NSLog(@"ok: momento aggiunto al dataSource");
-                        NSLog(@"posto : %@",ptMoment.place.name);
+                       // NSLog(@"ok: momento aggiunto al dataSource");
+                        //NSLog(@"posto : %@",ptMoment.place.name);
                         [self.dataSourceMoments addObject:ptMoment];
                     }
                 }

@@ -20,19 +20,16 @@
 +(void)sincMomentsCompletion:(void(^)(void))completionBlock;
 +(void)sincPlacesCompletion:(void(^)(void))completionBlock;
 
-
-
 +(void)saveNote:(Note *)newNote inPlace:(Place *)place completionDBBlock:(void(^)(void))completionDB remoteCompletionBlock:(void(^)(void))remoteCompletion remoteFailureBlock:(void(^)(void))remoteFailure;
-+(void)saveImage:(NSData *)imageData inPlace:(Place *)place withData:(NSDictionary *)data
-       imageUUID:(NSString *)uuid
-completionDBBlock:(void(^)(Moment *finalMom))completionDB
-remoteCompletionBlock:(void(^)(Moment *finalMom))remoteCompletion
-remoteFailureBlock:(void(^)(void))remoteFailure;
 
++(void)saveImage:(NSData *)imageData inPlace:(Place *)place withData:(NSDictionary *)data imageUUID:(NSString *)uuid completionDBBlock:(void(^)(Moment *finalMom))completionDB remoteCompletionBlock:(void(^)(Moment *finalMom))remoteCompletion remoteFailureBlock:(void(^)(void))remoteFailure;
+
++(void)saveContact:(Contact *)contact inPlace:(Place *)place completionDBBlock:(void(^)(void))completionDB remoteCompletionBlock:(void(^)(void))remoteCompletion remoteFailureBlock:(void(^)(void))remoteFailure;
 
 +(void)loadFastDBImages:(void(^)(NSArray *images))imagesBlock fromContainerName:(NSString *)containerName;
 +(void)loadNotes:(void(^)(NSArray *notes))notesBlock fromContainerName:(NSString *)containerName;
 +(void)loadPlaces:(void(^)(NSArray *places))placesBlock fromContainerName:(NSString *)containerName;
 +(void)loadMoments:(void(^)(NSArray *moments))momentsBlock fromContainerName:(NSString *)containerName;
++(void)loadContacts:(void(^)(NSArray *contacts))contactsBlock fromContainerName:(NSString *)containerName;
 
 @end
