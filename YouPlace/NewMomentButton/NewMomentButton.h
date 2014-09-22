@@ -12,6 +12,8 @@
 
 @property (nonatomic,strong) NSString *iconImageChar;
 @property (nonatomic,strong) UIColor *mainColor;
-@property (nonatomic,strong) UIColor *textColor;
+@property (nonatomic,strong) UIColor *textIconColor;
+@property (nonatomic,strong) UIColor *textPlusColor;
+
 
 @end

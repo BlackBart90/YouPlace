@@ -54,7 +54,7 @@
     
     NSString *sql = [NSString stringWithFormat:@"UPDATE Moments SET container_name = '%@',place_id = '%@',name = '%@',startDate = '%@',endDate = '%@' WHERE uniqueid = '%@'",newMoment.containerName,newMoment.place.uniqueid,newMoment.name,newMoment.startDate,newMoment.endDate,newMoment.uniqueid];
     [db beginTransaction];
-    //db.traceExecution = YES;
+  //  db.traceExecution = YES;
 
     [db executeUpdate:sql];
     [db commit];

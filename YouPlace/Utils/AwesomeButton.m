@@ -39,8 +39,8 @@
 
 -(void)innerInit
 {
-    self.ownTitle = @"title";
-    self.ownCode = @"\uf007";
+    self.ownTitle = nil;
+    self.ownCode = nil;
     self.ownCodeSize = 20;
     self.ownTitleSize = 20;
     self.fontCodeColor = [UIColor blackColor];
@@ -52,13 +52,15 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    if (self.ownCode.length && self.ownTitle.length) {
+    if (self.ownCode.length || self.ownTitle.length) {
         [self addData];
     }
 }
 -(void)addData
 {
     //INFORMAZIONI
+    if (self.ownCode && self.ownTitle) {
+    
     NSString *info = self.ownTitle;
     NSString *icon_info = self.ownCode;
     NSString *info_string = [NSString stringWithFormat:@"%@   %@",icon_info ,info];
@@ -70,13 +72,21 @@
     [attributedString_info addAttribute:NSForegroundColorAttributeName value:self.titleColor range:NSMakeRange(icon_info.length+3, info.length)];
     
     [self setAttributedTitle:attributedString_info forState:UIControlStateNormal];
-
+        
+    }
+    
+    if (self.ownCode && !self.ownTitle) {
+        self.titleLabel.font = [UIFont fontWithName:self.fontCodeName size:20];
+        self.titleLabel.textColor = self.fontCodeColor;
+        [self setTitle:self.ownCode forState:UIControlStateNormal];
+    }
 }
 
 -(void)setHighlighted:(BOOL)highlighted
 {
     if (highlighted) {
-        self.transform = CGAffineTransformMakeScale(0.9, 0.9);
+        
+        self.transform = CGAffineTransformMakeScale(0.6, 0.6);
     }else
     {
         self.transform = CGAffineTransformIdentity;

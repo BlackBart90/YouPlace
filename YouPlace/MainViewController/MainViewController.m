@@ -104,10 +104,7 @@
     }else
     {
         [self startLocalization];
-        [self loadRegionsWithFinalBlock:^{
-            
-            [self loadContainers];
-        }];
+    
     }
 }
 -(void)userDidLoggedIn:(LoginViewController *)loginController
@@ -133,7 +130,6 @@
     __block PlaceScroller *ptPlaceScroller = self.placeScroll;
     
     [DataManager loadMoments:^(NSArray *moments) {
-        
         m_manager = [[MomentsManager alloc]initWithMoments:moments];
         //NSArray *placesArray = [m_manager divideAllMomentsByPlaces];
         // NSArray *momentsContainer = [m_manager momentsContainersFromArray:placesArray andCurrentPlace:self.currentPlace];

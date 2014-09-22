@@ -14,11 +14,11 @@
 #import "FileUploaderManager.h"
 #import "DataManager.h"
 #import "ColorConverter.h"
+#import "MIAPopUp.h"
 
-@interface SinglePlaceView () <MKMapViewDelegate,FileUploaderProtocol>
+@interface SinglePlaceView () <MKMapViewDelegate,FileUploaderProtocol,MIABasePopUpProtocol>
 
 @property (nonatomic,retain) NSArray *images;
-@property (nonatomic,strong) MainViewController *ptMainController;
 
 @end
 @implementation SinglePlaceView
@@ -43,8 +43,8 @@
     if (self) {
         self.mapView.showsUserLocation = YES;
         self.mapView.delegate = self;
-        [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-        self.sonoQui.hidden = YES;
+        [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
+       // self.sonoQui.hidden = YES;
     }
     return self;
 }
@@ -67,14 +67,12 @@
         self.n_moments.text = [NSString stringWithFormat:@"%i",self.ownContainer.numberOfMoments];
     }
 }
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
     [self resettingFrames];
-    UIView *view = self.superview.superview;
-    PlaceScroller *ptPlaceScroller = (PlaceScroller *) view;
-    MainViewController *mainController = (MainViewController *) ptPlaceScroller.superview.nextResponder;
-    self.ptMainController = mainController;
+   
     [self addingData];
     self.backgroundColor = [UIColor clearColor];
     self.containerView.frame = self.bounds;
@@ -91,26 +89,42 @@
     
     self.placeName.backgroundColor = [UIColor clearColor];
     self.containerNameView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.containerNameView.layer.shadowOpacity = 0.4;
+    self.containerNameView.layer.shadowOpacity = 0.2;
     self.containerNameView.layer.shadowRadius = 1;
     self.containerNameView.layer.shadowColor = [UIColor blackColor].CGColor;
+
+    self.containerPhotos.layer.shadowOffset = CGSizeMake(0, 0);
+    self.containerPhotos.layer.shadowOpacity = 0.2;
+    self.containerPhotos.layer.shadowRadius = 1;
+    self.containerPhotos.layer.shadowColor = [UIColor blackColor].CGColor;
+
+    self.containerNotes.layer.shadowOffset = CGSizeMake(0, 0);
+    self.containerNotes.layer.shadowOpacity = 0.2;
+    self.containerNotes.layer.shadowRadius = 1;
+    self.containerNotes.layer.shadowColor = [UIColor blackColor].CGColor;
     
     //newMomentButton photos
     self.addPhotosButton.iconImageChar = @"\uf030";
     self.addPhotosButton.mainColor = [ColorConverter colorWithHexString:@"c13f21"];
-    self.addPhotosButton.textColor = [ColorConverter colorWithHexString:@"ffffff"];
+    self.addPhotosButton.textIconColor = [ColorConverter colorWithHexString:@"ffffff"];
+    self.addPhotosButton.textPlusColor = [[ColorConverter colorWithHexString:@"000000"] colorWithAlphaComponent:0.2];
     
+    //newMomentButton notes
+    self.addNoteButton.iconImageChar = @"\uf0f6";
+    self.addNoteButton.mainColor = [ColorConverter colorWithHexString:@"faf396"];
+    self.addNoteButton.textIconColor = [ColorConverter colorWithHexString:@"ffffff"];
+    self.addNoteButton.textPlusColor = [[ColorConverter colorWithHexString:@"000000"] colorWithAlphaComponent:0.2];
     
     
     if (self.currentPlace) {
-        self.sonoQui.hidden = NO;
+      //  self.sonoQui.hidden = NO;
     }
-    else self.sonoQui.hidden = YES;
+   // else self.sonoQui.hidden = YES;
     
  
     MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
     annotationPoint.coordinate = self.coordinates;
-    annotationPoint.title = @"Microsoft";
+    annotationPoint.title = self.ownContainer.placeName;
     
     
     MKCoordinateRegion region = self.mapView.region;
@@ -124,11 +138,11 @@
     
     [self.mapView addAnnotation:annotationPoint];
     
-    
+    annotationPoint = nil;
     
     UITapGestureRecognizer *tapMap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapMap)];
     [self.mapView addGestureRecognizer:tapMap];
-    
+    tapMap = nil;
 
     //loadNotes
     
@@ -169,6 +183,8 @@
     [self loadImages];
    
 }
+
+
 -(void)resettingFrames
 {
     int maxWidth = [UIScreen mainScreen].bounds.size.width;
@@ -208,12 +224,42 @@
 #pragma mark - save actions -
 -(void)savePhoto:(id)sender
 {
-    NSLog(@"moment container name : %@",self.ownContainer.placeName);
-    [[FileUploaderManager sharedClass] newImageFromController:self.ptMainController andDelegate:self];
+    UIView *view = self.superview.superview;
+    PlaceScroller *ptPlaceScroller = (PlaceScroller *) view;
+    MainViewController *mainController = (MainViewController *) ptPlaceScroller.superview.nextResponder;
 
+    MIAPopUp *photoPopUp = [[MIAPopUp alloc]initInController:mainController type:@"photo_pop_up" message:@"ciao" andTitle:@"ciao"];
+    photoPopUp.openingAnimationName = @"gravity";
+    photoPopUp.endingAnimationName = @"gravity";
+    photoPopUp.delegate = self;
+    [photoPopUp show];
+    /*
+    
+      NSLog(@"moment container name : %@",self.ownContainer.placeName);
+    [[FileUploaderManager sharedClass] newImageFromController:mainController andDelegate:self];
+*/
+}
+-(void)closePopUp:(MIABasePopUp *)popUp
+{
+    
+    MIAPopUp *popUpRenderer = (MIAPopUp *)popUp.renderer;
+    [popUpRenderer close];
 }
 -(void)saveNote:(id)sender
 {
+    UIView *view = self.superview.superview;
+    PlaceScroller *ptPlaceScroller = (PlaceScroller *) view;
+     MainViewController *mainController = (MainViewController *) ptPlaceScroller.superview.nextResponder;
+
+    //tmp
+    MIAPopUp *notePopUp = [[MIAPopUp alloc]initInController:mainController type:@"note_pop_up" message:@"ciao" andTitle:@"ciao"];
+    notePopUp.openingAnimationName = @"gravity";
+    notePopUp.endingAnimationName = @"gravity";
+    notePopUp.delegate = self;
+    [notePopUp show];
+    /*
+
+    
     Note *customNote = [[Note alloc]init];
     customNote.content = @"testo di prova per vedere se va";
     customNote.containerName = self.ownContainer.name;
@@ -221,8 +267,8 @@
     
     [DataManager saveNote:customNote inPlace:[[self updatePlace] validatePlace] completionDBBlock:^{
         NSLog(@"nota + momento salvato in locale");
-        [self.ptMainController loadRegionsWithFinalBlock:^{
-            [self.ptMainController loadContainers];
+        [mainController loadRegionsWithFinalBlock:^{
+            [mainController loadContainers];
             
         }];
     } remoteCompletionBlock:^{
@@ -230,7 +276,7 @@
     } remoteFailureBlock:^{
         NSLog(@"qualcosa è andato storto in remoto");
 
-    }];
+    }];*/
 }
 -(void)saveContact:(id)sender
 {
@@ -261,6 +307,10 @@
 -(void)didUploadFileData:(NSData *)dataFile
 {
     
+    UIView *view = self.superview.superview;
+    PlaceScroller *ptPlaceScroller = (PlaceScroller *) view;
+    MainViewController *mainController = (MainViewController *) ptPlaceScroller.superview.nextResponder;
+
     NSDictionary * dictData = @{@"name":kDefaultMomentName,
                                 @"contName":self.ownContainer.name,
                                 };
@@ -268,8 +318,8 @@
     NSString *imageUUID = [Utils createUUID];
     [DataManager saveImage:dataFile inPlace:[[self updatePlace] validatePlace]  withData:dictData imageUUID:imageUUID completionDBBlock:^(Moment *mom){
         
-        [self.ptMainController loadRegionsWithFinalBlock:^{
-            [self.ptMainController loadContainers];
+        [mainController loadRegionsWithFinalBlock:^{
+            [mainController loadContainers];
             
         }];
     } remoteCompletionBlock:^(Moment *mom){
@@ -289,9 +339,12 @@
 -(void)dealloc
 {
     self.delegate =  nil;
-    
+    self.containerView =nil;
     for (UIView *view in self.subviews) {
         for (UIView *sub in view.subviews) {
+            for (UIView *subs in sub.subviews) {
+                [subs removeFromSuperview];
+            }
             [sub removeFromSuperview];
         }
         [view removeFromSuperview];
@@ -299,7 +352,7 @@
     self.mapView.delegate = nil;
 
     self.images = nil;
-    self.ptMainController = nil;
+    
 }
 
 /*

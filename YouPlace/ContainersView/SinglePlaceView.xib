@@ -7,23 +7,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="j8a-ml-pvD" customClass="SinglePlaceView">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="410"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="fXK-sT-YIW">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="410"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cr5-NU-vxi">
                             <rect key="frame" x="211" y="10" width="89" height="43"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sono qui" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Jr-fA-En1">
-                            <rect key="frame" x="47" y="213" width="67" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="qN1-7m-iu5">
@@ -45,75 +39,62 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="J8u-CE-Qip">
-                            <rect key="frame" x="110" y="334" width="81" height="62"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                            <state key="normal" title="+">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="saveContact:" destination="j8a-ml-pvD" eventType="touchUpInside" id="eWC-9U-dX5"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="salva contatto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p0U-Nv-2K9">
-                            <rect key="frame" x="104" y="315" width="92" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kBT-eH-eJf">
-                            <rect key="frame" x="0.0" y="334" width="81" height="62"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                            <state key="normal" title="+">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="savePhoto:" destination="j8a-ml-pvD" eventType="touchUpInside" id="pPK-Zt-sx0"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="salva foto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kug-qC-gmD">
-                            <rect key="frame" x="0.0" y="315" width="92" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AuB-gj-diT">
-                            <rect key="frame" x="206" y="334" width="81" height="62"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                            <state key="normal" title="+">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="saveNote:" destination="j8a-ml-pvD" eventType="touchUpInside" id="L1X-sv-uQa"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="salva nota" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KdH-pl-D8P">
-                            <rect key="frame" x="200" y="315" width="92" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" id="5D7-J9-bI9" customClass="BrutalUIImageView">
-                            <rect key="frame" x="156" y="188" width="82" height="103"/>
+                        <view appearanceType="aqua" contentMode="scaleToFill" id="h8p-6n-lr7" userLabel="containerPhotos">
+                            <rect key="frame" x="1" y="189" width="300" height="103"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" id="Bi6-HD-muV" customClass="BrutalUIImageView">
+                                    <rect key="frame" x="0.0" y="0.0" width="153" height="103"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="5D7-J9-bI9" customClass="BrutalUIImageView">
+                                    <rect key="frame" x="154" y="0.0" width="83" height="103"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QjK-7N-PMq" customClass="NewMomentButton">
+                                    <rect key="frame" x="238" y="0.0" width="61" height="103"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="savePhoto:" destination="j8a-ml-pvD" eventType="touchUpInside" id="zMx-jv-biQ"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" id="Bi6-HD-muV" customClass="BrutalUIImageView">
-                            <rect key="frame" x="1" y="188" width="154" height="103"/>
+                        <view appearanceType="aqua" contentMode="scaleToFill" id="OBd-EO-01z" userLabel="containerNotes">
+                            <rect key="frame" x="0.0" y="298" width="300" height="72"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <subviews>
+                                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j3l-tr-SuZ" customClass="NewMomentButton">
+                                    <rect key="frame" x="0.0" y="0.0" width="77" height="72"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="saveNote:" destination="j8a-ml-pvD" eventType="touchUpInside" id="M8U-Qb-AhZ"/>
+                                    </connections>
+                                </button>
+                                <view appearanceType="aqua" contentMode="scaleToFill" id="h3v-FU-XfA">
+                                    <rect key="frame" x="78" y="0.0" width="110" height="72"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="1" green="0.9882352941176471" blue="0.81176470588235294" alpha="1" colorSpace="deviceRGB"/>
+                                </view>
+                                <view appearanceType="aqua" contentMode="scaleToFill" id="6Ca-n8-9ti">
+                                    <rect key="frame" x="189" y="0.0" width="110" height="72"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="1" green="0.9882352941176471" blue="0.81176470588235294" alpha="1" colorSpace="deviceRGB"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
-                        <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QjK-7N-PMq" customClass="NewMomentButton">
-                            <rect key="frame" x="239" y="188" width="60" height="103"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <state key="normal">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
@@ -121,15 +102,15 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="addPhotosButton" destination="QjK-7N-PMq" id="kGo-Dg-79l"/>
-                <outlet property="containerNameView" destination="TCV-aF-QwL" id="h8t-zc-Ptr"/>
-                <outlet property="containerView" destination="fXK-sT-YIW" id="dwz-Mi-DNo"/>
-                <outlet property="imageViewTest_2" destination="5D7-J9-bI9" id="0ge-ki-qrc"/>
-                <outlet property="imageViewTest_3" destination="Bi6-HD-muV" id="5jw-K5-h3d"/>
-                <outlet property="mapView" destination="qN1-7m-iu5" id="8fL-aO-nZT"/>
-                <outlet property="n_moments" destination="Cr5-NU-vxi" id="PrS-5S-ObM"/>
-                <outlet property="placeName" destination="TWp-ef-tfr" id="EM0-Y4-3po"/>
-                <outlet property="sonoQui" destination="2Jr-fA-En1" id="RoU-MX-xAS"/>
+                <outlet property="addNoteButton" destination="j3l-tr-SuZ" id="wGU-Ra-B44"/>
+                <outlet property="addPhotosButton" destination="QjK-7N-PMq" id="rZF-em-VEf"/>
+                <outlet property="containerNameView" destination="TCV-aF-QwL" id="Lho-YC-vdQ"/>
+                <outlet property="containerPhotos" destination="h8p-6n-lr7" id="tbf-RO-sGc"/>
+                <outlet property="containerView" destination="fXK-sT-YIW" id="thk-8l-8xr"/>
+                <outlet property="imageViewTest_2" destination="Bi6-HD-muV" id="HZG-Jt-3AG"/>
+                <outlet property="imageViewTest_3" destination="5D7-J9-bI9" id="jAc-FJ-eUr"/>
+                <outlet property="mapView" destination="qN1-7m-iu5" id="pbE-Og-Taz"/>
+                <outlet property="placeName" destination="TWp-ef-tfr" id="zh3-Iw-Qfm"/>
             </connections>
         </view>
     </objects>

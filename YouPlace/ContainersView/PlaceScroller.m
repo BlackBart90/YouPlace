@@ -55,9 +55,9 @@
     int items_number = (int)self.dataSource.count;// 1 = empty view
     
     for (int i = 1; i <= items_number ; i++) {
-        UIView *singleView = [[UIView alloc]initWithFrame:CGRectMake(i * self.bounds.size.width,0, self.bounds.size.width, self.bounds.size.height)];
+        UIScrollView *singleView = [[UIScrollView alloc]initWithFrame:CGRectMake(i * self.bounds.size.width,0, self.bounds.size.width, self.bounds.size.height)];
         singleView.layer.masksToBounds = YES;
-        singleView.backgroundColor = [UIColor redColor];
+        singleView.backgroundColor = [UIColor clearColor];
         [self addSubview:singleView];
         [self.viewsDataSource addObject:singleView];
     }
@@ -75,22 +75,24 @@
     int internalMargin = 0;
     
     for (int i = 0; i < self.viewsDataSource.count; i++) {
-        UIView *subView = [self.viewsDataSource objectAtIndex:i];
+        UIScrollView *subView = [self.viewsDataSource objectAtIndex:i];
         int subview_width = subView.bounds.size.width;
-        int subview_height = subView.bounds.size.height;
         SinglePlaceView *placeView = [SinglePlaceView loadSinglePlaceView];
         placeView.delegate = self;
         placeView.tapdelegate = self;
         MomentContainer *container = [self.dataSource objectAtIndex:i];
         placeView.ownContainer = container;
-        container = nil;
 //        if (placeView.currentPlace) {
 //            currentView = placeView;
 //        }
         
-        placeView.frame = CGRectMake(internalMargin, internalMargin, subview_width-internalMargin*2, subview_height-internalMargin*2);
+        placeView.frame = CGRectMake(internalMargin, internalMargin, subview_width-internalMargin*2, placeView.bounds.size.height);
+        subView.contentSize = CGSizeMake(subview_width, placeView.bounds.size.height);
+        
         [subView addSubview:placeView];
+        container = nil;
         placeView = nil;
+        subView = nil;
     }
     [self addingEmptyContainer];
     [self emptyDataSource];
@@ -98,7 +100,7 @@
 }
 -(void)emptyDataSource
 {
-//    [self.viewsDataSource removeAllObjects];
+   // [self.viewsDataSource removeAllObjects];
 }
 // not used
 -(void)addingEmptyPlace
@@ -116,7 +118,7 @@
 -(void)addingEmptyContainer
 {
     UIView *singleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
-    singleView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.6];
+    singleView.backgroundColor = [UIColor clearColor];
     [self addSubview:singleView];
     
     EmptyContainerView *emptyView = [EmptyContainerView loadSingleEmptyView];

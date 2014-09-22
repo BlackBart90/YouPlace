@@ -27,6 +27,20 @@
 		EA607F3A198E460600F1C094 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA607F39198E460600F1C094 /* SystemConfiguration.framework */; };
 		EA607F3F198E4A4700F1C094 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA607F3E198E4A4700F1C094 /* FacebookSDK.framework */; };
 		EA675D7C19CDC0E100FF1833 /* NewMomentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA675D7B19CDC0E100FF1833 /* NewMomentButton.m */; };
+		EA75851819D08B1400E009D3 /* MIAAnimationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7584FA19D08B1400E009D3 /* MIAAnimationFactory.m */; };
+		EA75851919D08B1400E009D3 /* MIABaseAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7584FC19D08B1400E009D3 /* MIABaseAnimationView.m */; };
+		EA75851A19D08B1400E009D3 /* MIAFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7584FE19D08B1400E009D3 /* MIAFadeAnimation.m */; };
+		EA75851B19D08B1400E009D3 /* MIAGravityAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75850019D08B1400E009D3 /* MIAGravityAnimation.m */; };
+		EA75851C19D08B1400E009D3 /* MIAScalingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75850219D08B1400E009D3 /* MIAScalingAnimation.m */; };
+		EA75851D19D08B1400E009D3 /* MIATranslateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75850419D08B1400E009D3 /* MIATranslateAnimation.m */; };
+		EA75851E19D08B1400E009D3 /* PopUpAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA75850519D08B1400E009D3 /* PopUpAnimations.plist */; };
+		EA75854519D08FD300E009D3 /* MIABasePopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75853619D08FD300E009D3 /* MIABasePopUp.m */; };
+		EA75854619D08FD300E009D3 /* MIAPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75853819D08FD300E009D3 /* MIAPopUp.m */; };
+		EA75854719D08FD300E009D3 /* MIAPopUpFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75853A19D08FD300E009D3 /* MIAPopUpFactory.m */; };
+		EA75854819D08FD300E009D3 /* PhotoPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75853C19D08FD300E009D3 /* PhotoPopUp.m */; };
+		EA75854919D08FD300E009D3 /* PhotoPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA75853D19D08FD300E009D3 /* PhotoPopUp.xib */; };
+		EA75854E19D0B53700E009D3 /* NotePopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = EA75854D19D0B53700E009D3 /* NotePopUp.m */; };
+		EA75855019D0B54D00E009D3 /* NotePopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA75854F19D0B54D00E009D3 /* NotePopUp.xib */; };
 		EAB4A58519BC7BDB0021378D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A53319BC7BDB0021378D /* InfoPlist.strings */; };
 		EAB4A58D19BC7BDB0021378D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A54319BC7BDB0021378D /* Images.xcassets */; };
 		EAB4A5A719BC7BDB0021378D /* webFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAB4A57119BC7BDB0021378D /* webFont.ttf */; };
@@ -121,6 +135,31 @@
 		EA607F3E198E4A4700F1C094 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		EA675D7A19CDC0E100FF1833 /* NewMomentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMomentButton.h; sourceTree = "<group>"; };
 		EA675D7B19CDC0E100FF1833 /* NewMomentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMomentButton.m; sourceTree = "<group>"; };
+		EA7584F919D08B1400E009D3 /* MIAAnimationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIAAnimationFactory.h; sourceTree = "<group>"; };
+		EA7584FA19D08B1400E009D3 /* MIAAnimationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIAAnimationFactory.m; sourceTree = "<group>"; };
+		EA7584FB19D08B1400E009D3 /* MIABaseAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIABaseAnimationView.h; sourceTree = "<group>"; };
+		EA7584FC19D08B1400E009D3 /* MIABaseAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIABaseAnimationView.m; sourceTree = "<group>"; };
+		EA7584FD19D08B1400E009D3 /* MIAFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIAFadeAnimation.h; sourceTree = "<group>"; };
+		EA7584FE19D08B1400E009D3 /* MIAFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIAFadeAnimation.m; sourceTree = "<group>"; };
+		EA7584FF19D08B1400E009D3 /* MIAGravityAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIAGravityAnimation.h; sourceTree = "<group>"; };
+		EA75850019D08B1400E009D3 /* MIAGravityAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIAGravityAnimation.m; sourceTree = "<group>"; };
+		EA75850119D08B1400E009D3 /* MIAScalingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIAScalingAnimation.h; sourceTree = "<group>"; };
+		EA75850219D08B1400E009D3 /* MIAScalingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIAScalingAnimation.m; sourceTree = "<group>"; };
+		EA75850319D08B1400E009D3 /* MIATranslateAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIATranslateAnimation.h; sourceTree = "<group>"; };
+		EA75850419D08B1400E009D3 /* MIATranslateAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIATranslateAnimation.m; sourceTree = "<group>"; };
+		EA75850519D08B1400E009D3 /* PopUpAnimations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PopUpAnimations.plist; sourceTree = "<group>"; };
+		EA75853519D08FD300E009D3 /* MIABasePopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIABasePopUp.h; sourceTree = "<group>"; };
+		EA75853619D08FD300E009D3 /* MIABasePopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIABasePopUp.m; sourceTree = "<group>"; };
+		EA75853719D08FD300E009D3 /* MIAPopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIAPopUp.h; sourceTree = "<group>"; };
+		EA75853819D08FD300E009D3 /* MIAPopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIAPopUp.m; sourceTree = "<group>"; };
+		EA75853919D08FD300E009D3 /* MIAPopUpFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIAPopUpFactory.h; sourceTree = "<group>"; };
+		EA75853A19D08FD300E009D3 /* MIAPopUpFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIAPopUpFactory.m; sourceTree = "<group>"; };
+		EA75853B19D08FD300E009D3 /* PhotoPopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPopUp.h; sourceTree = "<group>"; };
+		EA75853C19D08FD300E009D3 /* PhotoPopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPopUp.m; sourceTree = "<group>"; };
+		EA75853D19D08FD300E009D3 /* PhotoPopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoPopUp.xib; sourceTree = "<group>"; };
+		EA75854C19D0B53700E009D3 /* NotePopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotePopUp.h; sourceTree = "<group>"; };
+		EA75854D19D0B53700E009D3 /* NotePopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotePopUp.m; sourceTree = "<group>"; };
+		EA75854F19D0B54D00E009D3 /* NotePopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotePopUp.xib; sourceTree = "<group>"; };
 		EAB4A53419BC7BDB0021378D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EAB4A54319BC7BDB0021378D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EAB4A57119BC7BDB0021378D /* webFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = webFont.ttf; sourceTree = "<group>"; };
@@ -325,12 +364,62 @@
 			path = YouPlace/NewMomentButton;
 			sourceTree = SOURCE_ROOT;
 		};
+		EA7584F719D08B1400E009D3 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				EA75852E19D08FD300E009D3 /* PopUpView */,
+				EA7584F819D08B1400E009D3 /* MIAAnimations */,
+			);
+			name = PopUp;
+			path = YouPlace/PopUp;
+			sourceTree = SOURCE_ROOT;
+		};
+		EA7584F819D08B1400E009D3 /* MIAAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				EA7584F919D08B1400E009D3 /* MIAAnimationFactory.h */,
+				EA7584FA19D08B1400E009D3 /* MIAAnimationFactory.m */,
+				EA7584FB19D08B1400E009D3 /* MIABaseAnimationView.h */,
+				EA7584FC19D08B1400E009D3 /* MIABaseAnimationView.m */,
+				EA7584FD19D08B1400E009D3 /* MIAFadeAnimation.h */,
+				EA7584FE19D08B1400E009D3 /* MIAFadeAnimation.m */,
+				EA7584FF19D08B1400E009D3 /* MIAGravityAnimation.h */,
+				EA75850019D08B1400E009D3 /* MIAGravityAnimation.m */,
+				EA75850119D08B1400E009D3 /* MIAScalingAnimation.h */,
+				EA75850219D08B1400E009D3 /* MIAScalingAnimation.m */,
+				EA75850319D08B1400E009D3 /* MIATranslateAnimation.h */,
+				EA75850419D08B1400E009D3 /* MIATranslateAnimation.m */,
+				EA75850519D08B1400E009D3 /* PopUpAnimations.plist */,
+			);
+			path = MIAAnimations;
+			sourceTree = "<group>";
+		};
+		EA75852E19D08FD300E009D3 /* PopUpView */ = {
+			isa = PBXGroup;
+			children = (
+				EA75853519D08FD300E009D3 /* MIABasePopUp.h */,
+				EA75853619D08FD300E009D3 /* MIABasePopUp.m */,
+				EA75853719D08FD300E009D3 /* MIAPopUp.h */,
+				EA75853819D08FD300E009D3 /* MIAPopUp.m */,
+				EA75853919D08FD300E009D3 /* MIAPopUpFactory.h */,
+				EA75853A19D08FD300E009D3 /* MIAPopUpFactory.m */,
+				EA75853B19D08FD300E009D3 /* PhotoPopUp.h */,
+				EA75853C19D08FD300E009D3 /* PhotoPopUp.m */,
+				EA75853D19D08FD300E009D3 /* PhotoPopUp.xib */,
+				EA75854C19D0B53700E009D3 /* NotePopUp.h */,
+				EA75854D19D0B53700E009D3 /* NotePopUp.m */,
+				EA75854F19D0B54D00E009D3 /* NotePopUp.xib */,
+			);
+			path = PopUpView;
+			sourceTree = "<group>";
+		};
 		EAB4A51719BC7BDB0021378D /* YouPlace */ = {
 			isa = PBXGroup;
 			children = (
 				EAB4A5E519BC83D00021378D /* mainFiles */,
 				EAB4A5EB19BC83D00021378D /* MainViewController */,
 				EAB4A5B919BC83D00021378D /* Data */,
+				EA7584F719D08B1400E009D3 /* PopUp */,
 				EAB4A5AB19BC83D00021378D /* ContainersView */,
 				EA675D7919CDC0E100FF1833 /* NewMomentButton */,
 				EAB4A5CA19BC83D00021378D /* DetailContainerController */,
@@ -704,10 +793,13 @@
 				EAB4A61C19BC83D00021378D /* SinglePlaceView.xib in Resources */,
 				EAB4A61719BC83D00021378D /* EmptyContainerView.xib in Resources */,
 				EAB4A58D19BC7BDB0021378D /* Images.xcassets in Resources */,
+				EA75855019D0B54D00E009D3 /* NotePopUp.xib in Resources */,
 				EAB4A62919BC83D00021378D /* HistoryViewController.xib in Resources */,
 				EAB4A58519BC7BDB0021378D /* InfoPlist.strings in Resources */,
 				EAB4A63719BC83D00021378D /* MapViewController.xib in Resources */,
 				EAB4A61919BC83D00021378D /* EmptyPlaceView.xib in Resources */,
+				EA75851E19D08B1400E009D3 /* PopUpAnimations.plist in Resources */,
+				EA75854919D08FD300E009D3 /* PhotoPopUp.xib in Resources */,
 				EAB4A5A719BC7BDB0021378D /* webFont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,6 +820,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA75854719D08FD300E009D3 /* MIAPopUpFactory.m in Sources */,
 				EAB4A64519BC83D00021378D /* TimeStamp.m in Sources */,
 				EAB4A61A19BC83D00021378D /* PlaceScroller.m in Sources */,
 				EAB4A64419BC83D00021378D /* ColorConverter.m in Sources */,
@@ -736,6 +829,7 @@
 				EAB4A61E19BC83D00021378D /* DataManager.m in Sources */,
 				EAB4A64319BC83D00021378D /* AwesomeButton.m in Sources */,
 				EAB4A64D19BC904A0021378D /* WildcardGestureRecognizer.m in Sources */,
+				EA75851919D08B1400E009D3 /* MIABaseAnimationView.m in Sources */,
 				EAB4A63619BC83D00021378D /* MapViewController.m in Sources */,
 				EAB4A61D19BC83D00021378D /* TappedView.m in Sources */,
 				EAB4A62F19BC83D00021378D /* LoginViewController.m in Sources */,
@@ -746,31 +840,40 @@
 				EAB4A63919BC83D00021378D /* MomentCell.m in Sources */,
 				EAB4A62B19BC83D00021378D /* LocationsManager.m in Sources */,
 				EAB4A62319BC83D00021378D /* AccountParse.m in Sources */,
+				EA75851D19D08B1400E009D3 /* MIATranslateAnimation.m in Sources */,
 				EAB4A62D19BC83D00021378D /* MyRegionsManager.m in Sources */,
 				EAB4A61819BC83D00021378D /* EmptyPlaceView.m in Sources */,
 				EAD45FC719C6394D008B5834 /* YPImage.m in Sources */,
 				EAB4A64019BC83D00021378D /* NSData+Base64.m in Sources */,
 				EAB4A62219BC83D00021378D /* FMResultSet.m in Sources */,
 				EAB4A63D19BC83D00021378D /* Note.m in Sources */,
+				EA75851819D08B1400E009D3 /* MIAAnimationFactory.m in Sources */,
 				EAB4A63F19BC83D00021378D /* AESCrypt.m in Sources */,
 				EAB4A63419BC83D00021378D /* MainViewController.m in Sources */,
 				EA675D7C19CDC0E100FF1833 /* NewMomentButton.m in Sources */,
 				EAB4A62119BC83D00021378D /* FMDatabasePool.m in Sources */,
 				EAB4A63819BC83D00021378D /* Moment.m in Sources */,
+				EA75854E19D0B53700E009D3 /* NotePopUp.m in Sources */,
 				EAB4A62819BC83D00021378D /* HistoryViewController.m in Sources */,
 				EAB4A63B19BC83D00021378D /* MomentContainerFactory.m in Sources */,
+				EA75851A19D08B1400E009D3 /* MIAFadeAnimation.m in Sources */,
 				EAB4A62419BC83D00021378D /* ParseData.m in Sources */,
 				EAB4A61B19BC83D00021378D /* SinglePlaceView.m in Sources */,
 				EAB4A62519BC83D00021378D /* DetailContainerViewController.m in Sources */,
+				EA75854519D08FD300E009D3 /* MIABasePopUp.m in Sources */,
 				EAF05E8819C45DB20005EF79 /* Contact.m in Sources */,
 				EAB4A62E19BC83D00021378D /* Place.m in Sources */,
 				EAB4A61F19BC83D00021378D /* dbManager.m in Sources */,
 				EAB4A63E19BC83D00021378D /* LocalNotificationManager.m in Sources */,
 				EAB4A61619BC83D00021378D /* EmptyContainerView.m in Sources */,
+				EA75851C19D08B1400E009D3 /* MIAScalingAnimation.m in Sources */,
 				EAB4A62019BC83D00021378D /* FMDatabase.m in Sources */,
 				EAB4A63219BC83D00021378D /* main.m in Sources */,
 				EA39599D19C7A43500A13862 /* BrutalUIImageView.m in Sources */,
+				EA75851B19D08B1400E009D3 /* MIAGravityAnimation.m in Sources */,
 				EAB4A63119BC83D00021378D /* AppDelegate.m in Sources */,
+				EA75854819D08FD300E009D3 /* PhotoPopUp.m in Sources */,
+				EA75854619D08FD300E009D3 /* MIAPopUp.m in Sources */,
 				EAB4A64219BC83D00021378D /* NSString+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
