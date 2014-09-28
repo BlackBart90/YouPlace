@@ -1,15 +1,15 @@
 //
-//  MIAFadeAnimation.m
+//  FadeAnimation.m
 //  FwkTest
 //
 //  Created by Jacopo on 31/07/14.
-//  Copyright (c) 2014 William Izzo. All rights reserved.
+//  
 //
 
-#import "MIAFadeAnimation.h"
+#import "FadeAnimation.h"
 
-@implementation MIAFadeAnimation
--(instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(MIAAnimationOptions *)options
+@implementation FadeAnimation
+-(instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(AnimationOptions *)options
 {
     self = [super initWithAnimatedView:animatedView inController:controller options:options];
     if (self) {
@@ -42,6 +42,7 @@
         self.parentController.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
         
     } completion:^(BOOL finished) {
+        
         finalBlock();
     }];
 }

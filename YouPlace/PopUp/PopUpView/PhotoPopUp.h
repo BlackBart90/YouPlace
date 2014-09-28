@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 private. All rights reserved.
 //
 
-#import "MIABasePopUp.h"
+#import "BasePopUp.h"
 #import "AwesomeButton.h"
 
-@interface PhotoPopUp : MIABasePopUp
+@interface PhotoPopUp : BasePopUp
 
 @end

@@ -25,5 +25,6 @@
 +(NSString *)stringJSONFromDictionary:(NSDictionary *)dictionary;
 +(NSDictionary*)dictionaryFromStringJSON:(NSString *)stringJSON error:(NSError *)error;
 +(NSString *)createUUID;
++(NSArray *)reversedArrayFromArray:(NSArray *)originalArray;
 
 @end

@@ -3,13 +3,13 @@
 //  FwkTest
 //
 //  Created by Jacopo on 25/07/14.
-//  Copyright (c) 2014 William Izzo. All rights reserved.
+//  
 //
 
-#import "MIABasePopUp.h"
-#import "MIAPopUpFactory.h"
+#import "BasePopUp.h"
+#import "PopUpFactory.h"
 
-@implementation MIABasePopUp
+@implementation BasePopUp
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];

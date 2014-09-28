@@ -118,12 +118,12 @@
 -(void)addingEmptyContainer
 {
     UIView *singleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
-    singleView.backgroundColor = [UIColor clearColor];
+    singleView.backgroundColor = [UIColor whiteColor];
     [self addSubview:singleView];
     
     EmptyContainerView *emptyView = [EmptyContainerView loadSingleEmptyView];
     emptyView.tapdelegate = self;
-    int internalMargin = 5;
+    int internalMargin = 0;
     
     emptyView.frame = CGRectMake(internalMargin, internalMargin, singleView.bounds.size.width-internalMargin*2, singleView.bounds.size.height-internalMargin*2);
     [singleView addSubview:emptyView];

@@ -1,15 +1,15 @@
 //
-//  MIAPopUp.h
+//  PopUp.h
 //  FwkTest
 //
 //  Created by Jacopo on 04/08/14.
-//  Copyright (c) 2014 William Izzo. All rights reserved.
+//  
 //
 
 #import <Foundation/Foundation.h>
-#import "MIABasePopUp.h"
+#import "BasePopUp.h"
 
-@interface MIAPopUp : NSObject
+@interface PopUp : NSObject
 
 - (instancetype)initInController:(UIViewController *)controller type:(NSString *)type message:(NSString *)message andTitle:(NSString *)title;
 - (void)show;
@@ -17,6 +17,6 @@
 
 @property (nonatomic,strong) NSString *openingAnimationName;
 @property (nonatomic,strong) NSString *endingAnimationName;
-@property (nonatomic,weak) id <MIABasePopUpProtocol> delegate;
+@property (nonatomic,weak) id <BasePopUpProtocol> delegate;
 
 @end

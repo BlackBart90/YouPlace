@@ -1,15 +1,15 @@
 //
-//  MIATranslateAnimation.m
+//  TranslateAnimation.m
 //  FwkTest
 //
 //  Created by Jacopo on 28/07/14.
-//  Copyright (c) 2014 William Izzo. All rights reserved.
+//  
 //
 
-#import "MIATranslateAnimation.h"
+#import "TranslateAnimation.h"
 
-@implementation MIATranslateAnimation
--(instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(MIAAnimationOptions *)options
+@implementation TranslateAnimation
+-(instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(AnimationOptions *)options
 {
     self = [super initWithAnimatedView:animatedView inController:controller options:options];
     if (self) {
@@ -21,8 +21,8 @@
 {
     
     int translation = -self.parentController.view.bounds.size.width;
-    if ([self.options isKindOfClass:[MIATranslateAnimationOptions class]]) {
-        MIATranslateAnimationOptions *translatingOption = (MIATranslateAnimationOptions *)self.options;
+    if ([self.options isKindOfClass:[TranslateAnimationOptions class]]) {
+        TranslateAnimationOptions *translatingOption = (TranslateAnimationOptions *)self.options;
 
         if (translatingOption.side == sideRight) {
             translation = -translation;
@@ -49,7 +49,7 @@
 }
 @end
 
-@implementation MIATranslateAnimationOptions
+@implementation TranslateAnimationOptions
 
 - (instancetype)init
 {

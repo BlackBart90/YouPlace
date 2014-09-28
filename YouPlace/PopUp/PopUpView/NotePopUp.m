@@ -9,6 +9,7 @@
 #import "NotePopUp.h"
 #import "AwesomeButton.h"
 #import "ColorConverter.h"
+#import "Tree.h"
 
 @implementation NotePopUp
 
@@ -20,16 +21,28 @@
     }
     return self;
 }
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        AwesomeButton *closeButton = [[AwesomeButton alloc]initWithFrame:CGRectMake(self.bounds.size.width-50, 5, 50, 50)];
+        closeButton.ownCode = @"\uf00d";
+        closeButton.fontCodeColor = [ColorConverter colorWithHexString:@"ffffff"];
+        
+        [closeButton addTarget:self action:@selector(closePopUp) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:closeButton];
+        
+        self.layer.masksToBounds = YES;
+        [ManagerTrees addTreesToView:self rectBigTree:CGRectMake(-30, -40, 200, 600) smallTree:CGRectMake(120,150 , 80, 240) andAlpha:0.2];
+        
+
+    }
+    return self;
+}
 -(void)layoutSubviews
 {
     [super layoutSubviews];
     
-    AwesomeButton *closeButton = [[AwesomeButton alloc]initWithFrame:CGRectMake(self.bounds.size.width-50, 5, 50, 50)];
-    closeButton.ownCode = @"\uf00d";
-    closeButton.fontCodeColor = [ColorConverter colorWithHexString:@"ffffff"];
-    
-    [closeButton addTarget:self action:@selector(closePopUp) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:closeButton];
     
 }
 -(void)closePopUp

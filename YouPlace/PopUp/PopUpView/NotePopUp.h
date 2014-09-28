@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 private. All rights reserved.
 //
 
-#import "MIABasePopUp.h"
+#import "BasePopUp.h"
 
-@interface NotePopUp : MIABasePopUp
+@interface NotePopUp : BasePopUp
 
 @end

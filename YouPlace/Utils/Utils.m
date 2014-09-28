@@ -95,6 +95,14 @@
     return jsonResponse;
 }
 
++ (NSArray *)reversedArrayFromArray:(NSArray *)originalArray{
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:[originalArray count]];
+    NSEnumerator *enumerator = [originalArray reverseObjectEnumerator];
+    for (id element in enumerator) {
+        [array addObject:element];
+    }
+    return array;
+}
 +(NSString *)createUUID
 {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);

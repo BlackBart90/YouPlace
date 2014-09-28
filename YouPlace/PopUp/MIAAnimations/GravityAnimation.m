@@ -1,19 +1,19 @@
 //
-//  MIAGravityAnimation.m
+//  GravityAnimation.m
 //  FwkTest
 //
 //  Created by Jacopo on 28/07/14.
-//  Copyright (c) 2014 William Izzo. All rights reserved.
+// 
 //
 
-#import "MIAGravityAnimation.h"
+#import "GravityAnimation.h"
 
-@interface MIAGravityAnimation()
+@interface GravityAnimation()
 @property (nonatomic,strong) UIDynamicAnimator *animator;
 @end
 
-@implementation MIAGravityAnimation
--(instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(MIAAnimationOptions *)options
+@implementation GravityAnimation
+-(instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(AnimationOptions *)options
 {
     self = [super initWithAnimatedView:animatedView inController:controller options:options];
     if (self) {

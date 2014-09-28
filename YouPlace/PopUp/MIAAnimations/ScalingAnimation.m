@@ -1,15 +1,15 @@
 //
-//  MIAScalingAnimation.m
+//  ScalingAnimation.m
 //  FwkTest
 //
 //  Created by Jacopo on 28/07/14.
-//  Copyright (c) 2014 William Izzo. All rights reserved.
+//  
 //
 
-#import "MIAScalingAnimation.h"
+#import "ScalingAnimation.h"
 
-@implementation MIAScalingAnimation
--(instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(MIAAnimationOptions *)options
+@implementation ScalingAnimation
+-(instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(AnimationOptions *)options
 {
     self = [super initWithAnimatedView:animatedView inController:controller options:options];
     if (self) {
@@ -54,6 +54,8 @@
         self.parentController.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
         
     } completion:^(BOOL finished) {
+        [self.animatedView removeFromSuperview];
+
         finalBlock();
     }];
 }

@@ -13,6 +13,7 @@
 #import "ParseData.h"
 #import "Utils.h"
 #import "DataManager.h"
+#import "Tree.h"
 
 @interface EmptyContainerView()<UITextFieldDelegate>
 
@@ -26,7 +27,14 @@
     EmptyContainerView *view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] objectAtIndex:0];
     return view;
 }
-
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [ManagerTrees addTreesToView:self rectBigTree:CGRectMake(-30, -30, 200, 600) smallTree:CGRectMake(120,350 , 80, 240) andAlpha:1];
+    }
+    return self;
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -48,14 +56,18 @@
     self.containerView.layer.borderColor = [UIColor blackColor].CGColor;
     self.containerView.layer.borderWidth = 0;
     self.containerView.layer.masksToBounds = YES;
-    self.containerView.layer.cornerRadius = 5;
-    
-    self.layer.shadowOffset = CGSizeMake(0, 0);
-    self.layer.shadowOpacity = 0.4;
-    self.layer.shadowRadius = 0.7;
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.containerView.layer.cornerRadius = 0;
+//    
+//    self.layer.shadowOffset = CGSizeMake(0, 0);
+//    self.layer.shadowOpacity = 0.4;
+//    self.layer.shadowRadius = 0.7;
+//    self.layer.shadowColor = [UIColor blackColor].CGColor;
     self.autoresizesSubviews = YES;
+ 
+    
+    
 }
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -80,7 +92,6 @@
 
     if (self.containerTextField.text.length) {
 
-    
     Note *customNote = [[Note alloc]init];
     customNote.content = @"nota di prova per vedere se va";
     customNote.containerName = self.containerTextField.text;

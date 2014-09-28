@@ -14,9 +14,9 @@
 #import "FileUploaderManager.h"
 #import "DataManager.h"
 #import "ColorConverter.h"
-#import "MIAPopUp.h"
+#import "PopUp.h"
 
-@interface SinglePlaceView () <MKMapViewDelegate,FileUploaderProtocol,MIABasePopUpProtocol>
+@interface SinglePlaceView () <MKMapViewDelegate,FileUploaderProtocol,BasePopUpProtocol>
 
 @property (nonatomic,retain) NSArray *images;
 
@@ -228,10 +228,14 @@
     PlaceScroller *ptPlaceScroller = (PlaceScroller *) view;
     MainViewController *mainController = (MainViewController *) ptPlaceScroller.superview.nextResponder;
 
-    MIAPopUp *photoPopUp = [[MIAPopUp alloc]initInController:mainController type:@"photo_pop_up" message:@"ciao" andTitle:@"ciao"];
-    photoPopUp.openingAnimationName = @"gravity";
-    photoPopUp.endingAnimationName = @"gravity";
+    PopUp *photoPopUp = [[PopUp alloc]initInController:mainController type:@"photo_pop_up" message:@"ciao" andTitle:@"ciao"];
+    photoPopUp.openingAnimationName = @"scale";
+    photoPopUp.endingAnimationName = @"scale";
     photoPopUp.delegate = self;
+    
+    
+    
+    
     [photoPopUp show];
     /*
     
@@ -239,10 +243,10 @@
     [[FileUploaderManager sharedClass] newImageFromController:mainController andDelegate:self];
 */
 }
--(void)closePopUp:(MIABasePopUp *)popUp
+-(void)closePopUp:(BasePopUp *)popUp
 {
     
-    MIAPopUp *popUpRenderer = (MIAPopUp *)popUp.renderer;
+    PopUp *popUpRenderer = (PopUp *)popUp.renderer;
     [popUpRenderer close];
 }
 -(void)saveNote:(id)sender
@@ -252,9 +256,9 @@
      MainViewController *mainController = (MainViewController *) ptPlaceScroller.superview.nextResponder;
 
     //tmp
-    MIAPopUp *notePopUp = [[MIAPopUp alloc]initInController:mainController type:@"note_pop_up" message:@"ciao" andTitle:@"ciao"];
-    notePopUp.openingAnimationName = @"gravity";
-    notePopUp.endingAnimationName = @"gravity";
+    PopUp *notePopUp = [[PopUp alloc]initInController:mainController type:@"note_pop_up" message:@"ciao" andTitle:@"ciao"];
+    notePopUp.openingAnimationName = @"scale";
+    notePopUp.endingAnimationName = @"scale";
     notePopUp.delegate = self;
     [notePopUp show];
     /*

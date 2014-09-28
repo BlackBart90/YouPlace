@@ -1,19 +1,19 @@
 //
-//  MIABaseAnimationView.m
+//  BaseAnimationView.m
 //  FwkTest
 //
 //  Created by Jacopo on 28/07/14.
-//  Copyright (c) 2014 William Izzo. All rights reserved.
+//  
 //
 
-#import "MIABaseAnimationView.h"
-@interface MIABaseAnimationView()
+#import "BaseAnimationView.h"
+@interface BaseAnimationView()
 
 @end
-@implementation MIABaseAnimationView
+@implementation BaseAnimationView
 
 
-- (instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(MIAAnimationOptions *)options
+- (instancetype)initWithAnimatedView:(UIView *)animatedView inController:(UIViewController *)controller options:(AnimationOptions *)options
 {
     self = [super init];
     if (self) {
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation MIAAnimationOptions
+@implementation AnimationOptions
 
 - (instancetype)init
 {

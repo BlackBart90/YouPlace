@@ -8,6 +8,7 @@
 
 #import "PhotoPopUp.h"
 #import "ColorConverter.h"
+#import "Tree.h"
 
 @implementation PhotoPopUp
 
@@ -15,6 +16,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+    
         // Initialization code
     }
     return self;
@@ -23,6 +25,18 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
+        AwesomeButton *closeButton = [[AwesomeButton alloc]initWithFrame:CGRectMake(self.bounds.size.width-50, 5, 50, 50)];
+        closeButton.ownCode = @"\uf00d";
+        closeButton.fontCodeColor = [ColorConverter colorWithHexString:@"ffffff"];
+        
+        [closeButton addTarget:self action:@selector(closePopUp) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:closeButton];
+        
+        [ManagerTrees addTreesToView:self rectBigTree:CGRectMake(-30, -40, 200, 600) smallTree:CGRectMake(120,150 , 80, 240) andAlpha:0.2];
+        
+
+        
+    
     }
     return self;
 }
@@ -31,12 +45,24 @@
 {
     [super layoutSubviews];
     
-    AwesomeButton *closeButton = [[AwesomeButton alloc]initWithFrame:CGRectMake(self.bounds.size.width-50, 5, 50, 50)];
-    closeButton.ownCode = @"\uf00d";
-    closeButton.fontCodeColor = [ColorConverter colorWithHexString:@"ffffff"];
+    [self bringSubviewToFront:self.name_category_label];
+    [self bringSubviewToFront:self.place_label];
+    [self bringSubviewToFront:self.coordinates_label];
     
-    [closeButton addTarget:self action:@selector(closePopUp) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:closeButton];
+    self.name_category_label.adjustsFontSizeToFitWidth = YES;
+    self.place_label.adjustsFontSizeToFitWidth = YES;
+    self.coordinates_label.adjustsFontSizeToFitWidth = YES;
+    
+    [self bringSubviewToFront:self.name_category_label_value];
+    [self bringSubviewToFront:self.place_label_value];
+    [self bringSubviewToFront:self.coordinates_label_value];
+    
+    
+    self.name_category_label.text = @"Nome categoria";
+    self.place_label.text = @"Posto";
+    self.coordinates_label.text = @"Coordinate";
+    
+    self.layer.masksToBounds = YES;
     
 }
 -(void)closePopUp

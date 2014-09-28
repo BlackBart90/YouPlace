@@ -1,31 +1,31 @@
 //
-//  MIAPopUp.m
+//  PopUp.m
 //  FwkTest
 //
 //  Created by Jacopo on 04/08/14.
-//  Copyright (c) 2014 William Izzo. All rights reserved.
+//  
 //
 
-#import "MIAPopUp.h"
-#import "MIAPopUpFactory.h"
-#import "MIAAnimationFactory.h"
-#import "MIABaseAnimationView.h"
+#import "PopUp.h"
+#import "PopUpFactory.h"
+#import "AnimationFactory.h"
+#import "BaseAnimationView.h"
 
-@interface MIAPopUp()
+@interface PopUp()
 {
     UIView *overlayView;
 }
 
-@property (nonatomic) MIABasePopUp *selectedView;
+@property (nonatomic) BasePopUp *selectedView;
 @property (nonatomic,strong) UIViewController *parentController;
 @property (nonatomic,strong) NSString *defaultAnimation;
-@property (nonatomic,strong) MIABaseAnimationView *openingAnimation;
-@property (nonatomic,strong) MIABaseAnimationView *endingAnimation;
+@property (nonatomic,strong) BaseAnimationView *openingAnimation;
+@property (nonatomic,strong) BaseAnimationView *endingAnimation;
 @property (nonatomic,strong) NSMutableDictionary *dataArgs;
 
 @end
 
-@implementation MIAPopUp
+@implementation PopUp
 -(NSMutableDictionary *)dataArgs
 {
     if (!_dataArgs) {
@@ -54,7 +54,7 @@
 }
 -(void)loadPopUpViewFromName:(NSString *)name
 {
-    self.selectedView =  [MIAPopUpFactory popUpFromString:name layoutArgs:nil dataArgs:self.dataArgs];
+    self.selectedView =  [PopUpFactory popUpFromString:name layoutArgs:nil dataArgs:self.dataArgs];
     self.selectedView.renderer = self;
     // setting frame
     int width = self.parentController.view.bounds.size.width;
@@ -66,25 +66,25 @@
 }
 -(void)loadOption
 {
-    MIAAnimationOptions *customOpenOption = [[MIAAnimationOptions alloc]init];
+    AnimationOptions *customOpenOption = [[AnimationOptions alloc]init];
     customOpenOption.startTimeInterval = 1;
-    MIAAnimationOptions *customCloseOption = [[MIAAnimationOptions alloc]init];
-    customCloseOption.endTimeInterval = 1;
+    AnimationOptions *customCloseOption = [[AnimationOptions alloc]init];
+    customCloseOption.endTimeInterval = 0.5;
     Class animationOpenClass;
     Class animationCloseClass;
     
     if (self.openingAnimationName != nil) {
-        animationOpenClass = [MIAAnimationFactory animationFromKey:self.openingAnimationName];
+        animationOpenClass = [AnimationFactory animationFromKey:self.openingAnimationName];
     }else
     {
-        animationOpenClass = [MIAAnimationFactory animationFromKey:@"translate"];
+        animationOpenClass = [AnimationFactory animationFromKey:@"translate"];
 
     }
     if (self.endingAnimationName != nil) {
-        animationCloseClass = [MIAAnimationFactory animationFromKey:self.endingAnimationName];
+        animationCloseClass = [AnimationFactory animationFromKey:self.endingAnimationName];
     }else
     {
-        animationCloseClass = [MIAAnimationFactory animationFromKey:@"translate"];
+        animationCloseClass = [AnimationFactory animationFromKey:@"translate"];
 
     }
     self.openingAnimation = [[animationOpenClass alloc]initWithAnimatedView:self.selectedView inController:self.parentController options:customOpenOption];
@@ -93,10 +93,12 @@
 -(void)close
 {
     [self.endingAnimation endingAnimationWithFinalBlock:^{}];
+    
     [UIView animateWithDuration:0.5 animations:^{
         overlayView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
     } completion:^(BOOL finished) {
         [overlayView removeFromSuperview];
+        
     }];
 }
 
@@ -119,6 +121,8 @@
     
     self.selectedView.delegate = self.delegate;
     
-    [self.openingAnimation openingAnimationWithFinalBlock:^{}];
+    [self.openingAnimation openingAnimationWithFinalBlock:^{
+     
+    }];
 }
 @end
